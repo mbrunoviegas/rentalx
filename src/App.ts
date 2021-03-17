@@ -1,5 +1,5 @@
 import express, { Express, Router } from 'express';
-import { AppRoutes } from './app.routes';
+import routes from './routes';
 
 class App {
   private express: Express;
@@ -12,7 +12,7 @@ class App {
   }
 
   private getRoutes() {
-    this.routes = new AppRoutes().getRoutes;
+    this.routes = routes;
     this.express.use(this.routes);
   }
 

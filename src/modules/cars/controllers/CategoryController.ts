@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { BaseController } from './BaseController';
 
 export class CategoryController {
   public create = async (request: Request, response: Response) =>
