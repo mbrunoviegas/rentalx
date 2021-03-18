@@ -3,14 +3,37 @@ import { ICreateCategoryDTO } from '../dto/ICreateCategoryDTO';
 import { ICategoryRepository } from '../interfaces/ICategoryRepository';
 
 class CategoryRepositoryImpl implements ICategoryRepository {
-  create({ name, description } : ICreateCategoryDTO): void {
-    const categoryAlreadyExists = this.findByName(name);
+  private categories: Category[];
+
+  private static INSTANCE: CategoryRepositoryImpl;
+
+  private constructor() {
+    this.categories = [];
+  }
+
+  public static getInstance(): CategoryRepositoryImpl {
+    if (!this.INSTANCE) {
+      this.INSTANCE = new CategoryRepositoryImpl();
+    }
+    return this.INSTANCE;
+  }
+
+  create({ name, description }: ICreateCategoryDTO): void {
+    const category = new Category();
+    Object.assign(category, {
+      name,
+      description,
+      created_at: new Date(),
+    });
+
+    this.categories.push(category);
   }
   findByName(name: string): Category {
-    throw new Error('Method not implemented.');
+    return this.categories.find((category) =>
+      category.name === name);
   }
   list(): Category[] {
-    throw new Error('Method not implemented.');
+    return this.categories;
   }
 }
 
