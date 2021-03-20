@@ -1,15 +1,12 @@
 import { v4 as uuidV4 } from 'uuid';
+import { BaseEntitiy } from './BaseEntity';
 
-class Category {
-  readonly id: string;
+class Category extends BaseEntitiy {
   name: string;
   description: string;
-  created_at: Date;
 
   constructor() {
-    if (!this.id) {
-      this.id = uuidV4();
-    }
+    super();
   }
 }
 
