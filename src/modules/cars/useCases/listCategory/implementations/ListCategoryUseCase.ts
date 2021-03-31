@@ -1,4 +1,4 @@
-import { Category } from '../../../models/Category';
+import { Category } from '../../../../../database/typeorm/entities/Category';
 import { ICategoryRepository } from '../../../repositories/interfaces/ICategoryRepository';
 import { IListCategory } from '../interfaces/IListCategory';
 

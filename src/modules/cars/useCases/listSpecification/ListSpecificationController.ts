@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Specification } from '../../models/Specification';
+import { Specification } from '../../../../database/typeorm/entities/Specification';
 import { IListSpecification } from './interfaces/IListSpecification';
 
 class ListSpecificationController {

@@ -1,4 +1,4 @@
-import { Specification } from '../../../models/Specification';
+import { Specification } from '../../../../../database/typeorm/entities/Specification';
 
 interface IListSpecification {
   execute(): Specification[];

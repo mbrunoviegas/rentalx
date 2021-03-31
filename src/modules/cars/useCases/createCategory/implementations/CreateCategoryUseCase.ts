@@ -5,8 +5,8 @@ import { ICreateCategory } from '../interfaces/ICreateCategory';
 class CreateCategoryUseCase implements ICreateCategory {
   constructor(private categoryRepository: ICategoryRepository) {}
 
-  execute({ name, description }: ICreateCategoryRequestDTO): void {
-    const categoryAlreadyExists = this.categoryRepository.findByName(name);
+  async execute({ name, description }: ICreateCategoryRequestDTO): Promise<void> {
+    const categoryAlreadyExists = await this.categoryRepository.findByName(name);
     if (categoryAlreadyExists) {
       throw new Error('Category already exists');
     }
