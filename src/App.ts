@@ -1,6 +1,7 @@
 import express, { Express, Router } from 'express';
 import routes from './routes';
-import './database';
+import './shared/container';
+import './shared/database';
 
 class App {
   private express: Express;

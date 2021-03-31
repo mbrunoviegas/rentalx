@@ -1,4 +1,4 @@
-import { Specification } from '../../../../../database/typeorm/entities/Specification';
+import { Specification } from '../../../../../shared/database/typeorm/entities/Specification';
 import { ISpecificationRepository } from '../../../repositories/interfaces/ISpecificationRepository';
 import { IListSpecification } from '../interfaces/IListSpecification';
 
