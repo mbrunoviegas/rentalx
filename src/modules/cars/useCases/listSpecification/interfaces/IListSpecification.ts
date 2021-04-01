@@ -1,7 +1,7 @@
 import { Specification } from '../../../../../shared/database/typeorm/entities/Specification';
 
 interface IListSpecification {
-  execute(): Specification[];
+  execute(): Promise<Specification[]>;
 }
 
 export { IListSpecification };

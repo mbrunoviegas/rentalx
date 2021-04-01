@@ -1,7 +1,7 @@
 import { Category } from '../../../../../shared/database/typeorm/entities/Category';
 
 interface IListCategory {
-  execute(): Category[];
+  execute(): Promise<Category[]>;
 }
 
 export { IListCategory };

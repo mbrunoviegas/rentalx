@@ -1,12 +1,11 @@
 import { Request, Response } from 'express';
-import { Specification } from '../../../../shared/database/typeorm/entities/Specification';
-import { IListSpecification } from './interfaces/IListSpecification';
+import { container } from 'tsyringe';
+import { ListSpecificationUseCase } from './implementations/ListSpecificationUseCase';
 
 class ListSpecificationController {
-  constructor(private specificationUseCase: IListSpecification) {}
-
-  handle(request: Request, response: Response): Response {
-    const specifications: Specification[] = this.specificationUseCase.execute();
+  async handle(request: Request, response: Response): Promise<Response> {
+    const listSpecificationUseCase = container.resolve(ListSpecificationUseCase);
+    const specifications = await listSpecificationUseCase.execute();
     return response.status(200).json(specifications);
   }
 }
