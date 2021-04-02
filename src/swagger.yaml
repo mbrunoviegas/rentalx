@@ -1,0 +1,107 @@
+openapi: 3.0.0
+info:
+  title: RentX Documentation
+  description: This is a rent car API
+  version: 1.0.0
+  contact:
+    email: mbrunoviegas@gmail.com
+servers:
+  - url: http://localhost:3333
+paths:
+  /categories:
+    post:
+      tags:
+        - Categories
+      summary: Create Category
+      description: Create a category based on passed parameters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name: 
+                  description: Category name
+                  type: string
+                description:
+                  description: Category description
+                  type: string
+      responses: 
+        201:
+          description: CREATED
+    get:
+      tags:
+        - Categories
+      summary: List Categories
+      description: List All Categories
+      responses:
+        200:
+          description: List of categories
+          content: 
+            application/json:
+              schema:
+                type: array
+                items: 
+                  type: object
+                  properties:
+                    id:
+                      description: Category ID
+                      type: string
+                    name:
+                      description: Category name
+                      type: string
+                    description:
+                      description: Category description
+                      type: string
+                    created_at:
+                      description: Created time
+                      type: string
+                      format: date-time
+  /specifications:
+    post: 
+      tags: 
+        - Specifications
+      summary: Create specification
+      description: Create specification based on body values
+      requestBody: 
+        content: 
+          application:json: 
+            schema:
+              type: object
+              properties:
+                name:
+                  description: Specification's name
+                  type: string
+                description:
+                  description: Specification's description
+                  type: string
+      responses:
+        201:
+          description: CREATED
+    get:
+      tags:
+        - Specifications
+      summary: List specifications
+      description: List all specifications
+      responses:
+        200:
+          description: List of specifications
+          content: 
+            application/json:
+              schema:
+                type: array
+                items: 
+                  type: object
+                  properties:
+                    id:
+                      description: Specification ID
+                      type: string
+                    name:
+                      description: Specification name
+                      type: string
+                    description:
+                      description: Specification description
+                      type: string
+                    created_at:
+                      description: Specification time
+                      type: string
+                      format: date-time
