@@ -14,11 +14,14 @@ class CreateUserUseCase implements ICreateUserUseCase {
   async execute({
     name, username, password, email, driver_license,
   }: ICreateUserDTO): Promise<void> {
-    const user = await this.userRepository.findByUsername(username);
+    let user = await this.userRepository.findByUsername(username);
     if (user) {
-      throw new AppError('User already exists');
+      throw new AppError('Username already exists');
     }
-
+    user = await this.userRepository.findByEmail(email);
+    if (user) {
+      throw new AppError('Email already exists');
+    }
     await this.userRepository.create({
       name, username, password, email, driver_license,
     });
