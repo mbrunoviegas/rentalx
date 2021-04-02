@@ -56,6 +56,24 @@ paths:
                       description: Created time
                       type: string
                       format: date-time
+  /categories/import:
+    post:
+      tags:
+        - Categories
+      summary: Import categories
+      description: Import categories from csv file
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        201: 
+          description: CREATED
   /specifications:
     post: 
       tags: 
