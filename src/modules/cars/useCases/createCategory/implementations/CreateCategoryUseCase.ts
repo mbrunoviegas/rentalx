@@ -6,7 +6,7 @@ import { ICreateCategory } from '../interfaces/ICreateCategory';
 @injectable()
 class CreateCategoryUseCase implements ICreateCategory {
   constructor(
-    @inject('CategoryRepositoryImpl')
+    @inject('CategoryRepository')
     private categoryRepository: ICategoryRepository,
   ) { }
 

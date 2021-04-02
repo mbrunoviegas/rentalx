@@ -6,7 +6,7 @@ import { IListSpecification } from '../interfaces/IListSpecification';
 @injectable()
 class ListSpecificationUseCase implements IListSpecification {
   constructor(
-    @inject('SpecificationRepositoryImpl')
+    @inject('SpecificationRepository')
     private specificationRepository: ISpecificationRepository,
   ) { }
 

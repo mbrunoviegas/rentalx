@@ -8,7 +8,7 @@ import { IParsedCategory } from '../interfaces/IParsedCategory';
 @injectable()
 class ImportCategoryUseCase implements IImportCategory {
   constructor(
-    @inject('CategoryRepositoryImpl')
+    @inject('CategoryRepository')
     private categoryRepository: ICategoryRepository,
   ) { }
 

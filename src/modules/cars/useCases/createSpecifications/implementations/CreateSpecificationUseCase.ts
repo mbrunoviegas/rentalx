@@ -6,7 +6,7 @@ import { ICreateSpecification } from '../interfaces/ICreateSpecification';
 @injectable()
 class CreateSpecificationUseCase implements ICreateSpecification {
   constructor(
-    @inject('SpecificationRepositoryImpl')
+    @inject('SpecificationRepository')
   private specificationRepository: ISpecificationRepository,
   ) { }
 

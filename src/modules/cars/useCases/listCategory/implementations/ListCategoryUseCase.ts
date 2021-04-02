@@ -6,7 +6,7 @@ import { IListCategory } from '../interfaces/IListCategory';
 @injectable()
 class ListCategoryUseCase implements IListCategory {
   constructor(
-    @inject('CategoryRepositoryImpl')
+    @inject('CategoryRepository')
     private categoryRepository: ICategoryRepository,
   ) { }
 

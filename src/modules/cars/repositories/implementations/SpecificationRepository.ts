@@ -3,7 +3,7 @@ import { Specification } from '../../../../shared/database/typeorm/entities/Spec
 import { ICreateSpecificationDTO } from '../dto/ICreateSpecificationDTO';
 import { ISpecificationRepository } from '../interfaces/ISpecificationRepository';
 
-class SpecificationRepositoryImpl implements ISpecificationRepository {
+class SpecificationRepository implements ISpecificationRepository {
   private repository: Repository<Specification>;
 
   constructor() {
@@ -27,4 +27,4 @@ class SpecificationRepositoryImpl implements ISpecificationRepository {
   }
 }
 
-export { SpecificationRepositoryImpl };
+export { SpecificationRepository };
