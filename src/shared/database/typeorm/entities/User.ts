@@ -1,12 +1,10 @@
 import {
-  Column, CreateDateColumn, Entity, PrimaryGeneratedColumn,
+  Column, Entity,
 } from 'typeorm';
+import { BaseEntitiy } from './BaseEntity';
 
 @Entity('users')
-class User {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
+class User extends BaseEntitiy {
   @Column()
   name: string;
 
@@ -24,9 +22,6 @@ class User {
 
   @Column()
   isAdmin: boolean;
-
-  @CreateDateColumn()
-  created_at: Date;
 }
 
 export { User };

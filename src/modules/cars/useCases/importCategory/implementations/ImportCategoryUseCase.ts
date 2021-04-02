@@ -1,6 +1,7 @@
 import csvParse from 'csv-parse';
 import fs from 'fs';
 import { inject, injectable } from 'tsyringe';
+import { AppError } from '../../../../../shared/errors/AppError';
 import { ICategoryRepository } from '../../../repositories/interfaces/ICategoryRepository';
 import { IImportCategory } from '../interfaces/IImportCategory';
 import { IParsedCategory } from '../interfaces/IParsedCategory';
@@ -38,12 +39,18 @@ class ImportCategoryUseCase implements IImportCategory {
 
   async execute(file: Express.Multer.File): Promise<void> {
     const categories = await this.loadCategories(file);
+    let atLeastOneCreated = false;
     categories.forEach(async (category) => {
       const categoryAreadyExists = await this.categoryRepository.findByName(category.name);
       if (!categoryAreadyExists) {
+        atLeastOneCreated = true;
         await this.categoryRepository.create(category);
       }
     });
+
+    if (!atLeastOneCreated) {
+      throw new AppError('Some categories inside file already exists');
+    }
   }
 }
 

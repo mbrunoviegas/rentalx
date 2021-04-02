@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import { AppError } from '../../../../../shared/errors/AppError';
 import { ISpecificationRepository } from '../../../repositories/interfaces/ISpecificationRepository';
 import { ICreateCategoryRequestDTO } from '../../createCategory/dto/ICreateCategoryRequestDTO';
 import { ICreateSpecification } from '../interfaces/ICreateSpecification';
@@ -14,7 +15,7 @@ class CreateSpecificationUseCase implements ICreateSpecification {
     const specification = await this.specificationRepository.findByName(name);
 
     if (specification) {
-      throw new Error('Specification already exists');
+      throw new AppError('Specification already exists');
     }
 
     await this.specificationRepository.create({ name, description });
