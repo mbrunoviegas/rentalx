@@ -13,7 +13,7 @@ class App {
   constructor() {
     this.express = express();
     this.express.use(express.json());
-    const swaggerDocumentPath = path.resolve(__dirname, './swagger.yaml');
+    const swaggerDocumentPath = path.resolve(__dirname, './swagger.yml');
     this.express.use('/api', swaggerUi.serve, swaggerUi.setup(YAML.load(swaggerDocumentPath)));
     this.getRoutes();
   }

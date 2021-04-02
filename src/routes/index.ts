@@ -3,7 +3,7 @@ import { categoryRoutes } from './category.routes';
 import { specificationRoutes } from './specification.routes';
 
 const routes = Router();
-routes.use('/category', categoryRoutes);
-routes.use('/specification', specificationRoutes);
+routes.use('/categories', categoryRoutes);
+routes.use('/specifications', specificationRoutes);
 
 export default routes;

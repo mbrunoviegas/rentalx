@@ -15,7 +15,6 @@ class CategoryRepositoryImpl implements ICategoryRepository {
       name,
       description,
     });
-    console.log(category);
     await this.repository.save(category);
   }
 
