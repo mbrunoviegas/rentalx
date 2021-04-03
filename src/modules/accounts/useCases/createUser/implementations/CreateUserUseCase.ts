@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import { AppError } from '../../../../../shared/errors/AppError';
+import { ICrypt } from '../../../../../shared/providers/interfaces/ICrypt';
 import { ICreateUserDTO } from '../../../dto/ICreateUserDTO';
 import { IUserRepository } from '../../../repositories/interfaces/IUserRepository';
 import { ICreateUserUseCase } from '../interfaces/ICreateUserUseCase';
@@ -9,7 +10,9 @@ class CreateUserUseCase implements ICreateUserUseCase {
   constructor(
     @inject('UserRepository')
     private userRepository: IUserRepository,
-  ) {}
+    @inject('CryptProvider')
+    private crypt: ICrypt,
+  ) { }
 
   async execute({
     name, username, password, email, driver_license,
@@ -22,8 +25,15 @@ class CreateUserUseCase implements ICreateUserUseCase {
     if (user) {
       throw new AppError('Email already exists');
     }
+
+    const encryptedPassword = await this.crypt.encrypt(password);
+
     await this.userRepository.create({
-      name, username, password, email, driver_license,
+      name,
+      username,
+      password: encryptedPassword,
+      email,
+      driver_license,
     });
   }
 }
