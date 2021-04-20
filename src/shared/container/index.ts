@@ -5,9 +5,7 @@ import { CategoryRepository } from '../../modules/cars/repositories/implementati
 import { SpecificationRepository } from '../../modules/cars/repositories/implementations/SpecificationRepository';
 import { ICategoryRepository } from '../../modules/cars/repositories/interfaces/ICategoryRepository';
 import { ISpecificationRepository } from '../../modules/cars/repositories/interfaces/ISpecificationRepository';
-import { AuthProvider } from '../providers/implementations/AuthProvider';
 import { CryptProvider } from '../providers/implementations/CryptProvider';
-import { IAuth } from '../providers/interfaces/IAuth';
 import { ICrypt } from '../providers/interfaces/ICrypt';
 
 container.registerSingleton<ICategoryRepository>(
@@ -26,4 +24,3 @@ container.registerSingleton<IUserRepository>(
 );
 
 container.register<ICrypt>('CryptProvider', CryptProvider);
-container.register<IAuth>('AuthProvider', AuthProvider);

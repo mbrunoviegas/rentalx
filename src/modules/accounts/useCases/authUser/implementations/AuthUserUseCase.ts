@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import { User } from '../../../../../shared/database/typeorm/entities/User';
 import { AppError } from '../../../../../shared/errors/AppError';
-import { IAuth } from '../../../../../shared/providers/interfaces/IAuth';
+import { AuthProvider } from '../../../../../shared/providers/implementations/AuthProvider';
 import { ICrypt } from '../../../../../shared/providers/interfaces/ICrypt';
 import { UserRepository } from '../../../repositories/implementations/UserRepository';
 import { IRequestAuth } from '../dto/IRequestAuth';
@@ -14,8 +14,6 @@ class AuthUserUseCase implements IUseCase<IRequestAuth, IResponseAuth> {
     private userRepository: UserRepository,
     @inject('CryptProvider')
     private cryptProvider: ICrypt,
-    @inject('AuthProvider')
-    private authProvider: IAuth,
   ) { }
 
   private buildResponse(user: User, accessToken: string): IResponseAuth {
@@ -39,7 +37,7 @@ class AuthUserUseCase implements IUseCase<IRequestAuth, IResponseAuth> {
       throw new AppError('Email or password incorrect!');
     }
 
-    const accesToken = this.authProvider.generateToken(userAlreadyExists.id);
+    const accesToken = AuthProvider.generateToken(userAlreadyExists.id);
 
     const response = this.buildResponse(userAlreadyExists, accesToken);
 
