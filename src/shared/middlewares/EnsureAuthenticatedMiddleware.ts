@@ -16,7 +16,7 @@ const ensureAuthenticatedMiddlware = (request: Request, response: Response, next
 
   try {
     const { sub: userId } = AuthProvider.verify(token) as IPayload;
-    request.headers.userId = userId;
+    request.user = { id: userId };
     next();
   } catch (e) {
     throw new AppError('Invalid token', 401);

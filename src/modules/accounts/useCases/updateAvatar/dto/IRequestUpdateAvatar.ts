@@ -1,6 +1,6 @@
 interface IRequestUpdateAvatar {
-  id: string;
-  avatar: string;
+  user_id: string;
+  user_avatar: string;
 }
 
 export { IRequestUpdateAvatar };
