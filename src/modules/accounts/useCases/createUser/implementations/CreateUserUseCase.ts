@@ -1,12 +1,11 @@
 import { inject, injectable } from 'tsyringe';
 import { AppError } from '../../../../../shared/errors/AppError';
 import { ICrypt } from '../../../../../shared/providers/interfaces/ICrypt';
-import { ICreateUserDTO } from '../../../dto/ICreateUserDTO';
 import { IUserRepository } from '../../../repositories/interfaces/IUserRepository';
-import { ICreateUserUseCase } from '../interfaces/ICreateUserUseCase';
+import { ICreateUserDTO } from '../dto/ICreateUserDTO';
 
 @injectable()
-class CreateUserUseCase implements ICreateUserUseCase {
+class CreateUserUseCase implements IUseCase<ICreateUserDTO, void> {
   constructor(
     @inject('UserRepository')
     private userRepository: IUserRepository,

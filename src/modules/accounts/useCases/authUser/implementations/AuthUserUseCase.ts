@@ -6,10 +6,9 @@ import { ICrypt } from '../../../../../shared/providers/interfaces/ICrypt';
 import { UserRepository } from '../../../repositories/implementations/UserRepository';
 import { IRequestAuth } from '../dto/IRequestAuth';
 import { IResponseAuth } from '../dto/IResponseAuth';
-import { IAuthUser } from '../interfaces/IAuthUser';
 
 @injectable()
-class AuthUserUseCase implements IAuthUser {
+class AuthUserUseCase implements IUseCase<IRequestAuth, IResponseAuth> {
   constructor(
     @inject('UserRepository')
     private userRepository: UserRepository,

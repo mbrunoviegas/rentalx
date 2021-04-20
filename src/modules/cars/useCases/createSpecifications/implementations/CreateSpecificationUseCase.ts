@@ -2,10 +2,9 @@ import { inject, injectable } from 'tsyringe';
 import { AppError } from '../../../../../shared/errors/AppError';
 import { ISpecificationRepository } from '../../../repositories/interfaces/ISpecificationRepository';
 import { ICreateCategoryRequestDTO } from '../../createCategory/dto/ICreateCategoryRequestDTO';
-import { ICreateSpecification } from '../interfaces/ICreateSpecification';
 
 @injectable()
-class CreateSpecificationUseCase implements ICreateSpecification {
+class CreateSpecificationUseCase implements IUseCase<ICreateCategoryRequestDTO, void> {
   constructor(
     @inject('SpecificationRepository')
   private specificationRepository: ISpecificationRepository,

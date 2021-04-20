@@ -2,10 +2,9 @@ import { inject, injectable } from 'tsyringe';
 import { AppError } from '../../../../../shared/errors/AppError';
 import { ICategoryRepository } from '../../../repositories/interfaces/ICategoryRepository';
 import { ICreateCategoryRequestDTO } from '../dto/ICreateCategoryRequestDTO';
-import { ICreateCategory } from '../interfaces/ICreateCategory';
 
 @injectable()
-class CreateCategoryUseCase implements ICreateCategory {
+class CreateCategoryUseCase implements IUseCase<ICreateCategoryRequestDTO, void> {
   constructor(
     @inject('CategoryRepository')
     private categoryRepository: ICategoryRepository,

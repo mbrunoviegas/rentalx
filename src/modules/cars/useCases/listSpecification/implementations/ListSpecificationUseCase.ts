@@ -1,10 +1,9 @@
 import { inject, injectable } from 'tsyringe';
 import { Specification } from '../../../../../shared/database/typeorm/entities/Specification';
 import { ISpecificationRepository } from '../../../repositories/interfaces/ISpecificationRepository';
-import { IListSpecification } from '../interfaces/IListSpecification';
 
 @injectable()
-class ListSpecificationUseCase implements IListSpecification {
+class ListSpecificationUseCase implements IUseCase<void, Specification[]> {
   constructor(
     @inject('SpecificationRepository')
     private specificationRepository: ISpecificationRepository,

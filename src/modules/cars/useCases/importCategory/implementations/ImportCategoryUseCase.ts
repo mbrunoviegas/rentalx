@@ -3,11 +3,10 @@ import fs from 'fs';
 import { inject, injectable } from 'tsyringe';
 import { AppError } from '../../../../../shared/errors/AppError';
 import { ICategoryRepository } from '../../../repositories/interfaces/ICategoryRepository';
-import { IImportCategory } from '../interfaces/IImportCategory';
 import { IParsedCategory } from '../interfaces/IParsedCategory';
 
 @injectable()
-class ImportCategoryUseCase implements IImportCategory {
+class ImportCategoryUseCase implements IUseCase<Express.Multer.File, void> {
   constructor(
     @inject('CategoryRepository')
     private categoryRepository: ICategoryRepository,

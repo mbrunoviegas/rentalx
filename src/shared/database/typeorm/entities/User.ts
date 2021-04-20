@@ -22,6 +22,9 @@ class User extends BaseEntitiy {
 
   @Column()
   isAdmin: boolean;
+
+  @Column()
+  avatar: string;
 }
 
 export { User };

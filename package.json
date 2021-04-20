@@ -8,7 +8,7 @@
     "dev:debug": "tsnd --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
     "migration:run": "tsnd node_modules/typeorm/cli migration:run",
     "migration:create": "tsnd node_modules/typeorm/cli migration:create -n",
-    "migration:rever": "tsnd node_modules/typeorm/cli migration:revert"
+    "migration:revert": "tsnd node_modules/typeorm/cli migration:revert"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
