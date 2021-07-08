@@ -26,20 +26,26 @@ class AuthUserUseCase implements IUseCase<IRequestAuth, IResponseAuth> {
     };
   }
 
-  async execute({ email, password }: IRequestAuth): Promise<IResponseAuth> {
-    const userAlreadyExists = await this.userRepository.findByEmail(email);
-    if (!userAlreadyExists) {
+  private async findUser(email: string): Promise<User> {
+    const user = await this.userRepository.findByEmail(email);
+    if (!user) {
       throw new AppError('Email or password incorrect!');
     }
+    return user;
+  }
 
-    const isValidPassword = await this.cryptProvider.compare(password, userAlreadyExists.password);
+  private async validateUserPassword(inputtedPassword: string, userPassword: string): Promise<void> {
+    const isValidPassword = await this.cryptProvider.compare(inputtedPassword, userPassword);
     if (!isValidPassword) {
       throw new AppError('Email or password incorrect!');
     }
+  }
 
-    const accesToken = AuthProvider.generateToken(userAlreadyExists.id);
-
-    const response = this.buildResponse(userAlreadyExists, accesToken);
+  async execute({ email, password }: IRequestAuth): Promise<IResponseAuth> {
+    const user = await this.findUser(email);
+    await this.validateUserPassword(password, user.password);
+    const accesToken = AuthProvider.generateToken(user.id);
+    const response = this.buildResponse(user, accesToken);
 
     return response;
   }

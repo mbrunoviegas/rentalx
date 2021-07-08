@@ -6,9 +6,9 @@ import { categoryRoutes } from './category.routes';
 import { specificationRoutes } from './specification.routes';
 
 const routes = Router();
-routes.use('/categories', categoryRoutes);
-routes.use('/specifications', specificationRoutes);
-routes.use('/users', accountRoutes);
+routes.use('/categories', ensureAuthenticatedMiddlware, categoryRoutes);
+routes.use('/specifications', ensureAuthenticatedMiddlware, specificationRoutes);
+routes.use('/users', ensureAuthenticatedMiddlware, accountRoutes);
 routes.use('/auth', authRoutes);
 
 export default routes;

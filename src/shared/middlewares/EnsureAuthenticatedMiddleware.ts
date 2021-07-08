@@ -6,7 +6,7 @@ interface IPayload {
   sub: string;
 }
 
-const ensureAuthenticatedMiddlware = (request: Request, response: Response, next: NextFunction) => {
+const ensureAuthenticatedMiddlware = (request: Request, response: Response, next: NextFunction): void => {
   const authHeader = request.headers.authorization;
   if (!authHeader) {
     throw new AppError('Missing token', 401);
