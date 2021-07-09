@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe';
-import { ICategoryRepository } from '@modules/cars/repositories/interfaces/ICategoryRepository';
-import { Category } from '@shared/database/typeorm/entities/Category';
+import { ICategoryRepository } from '@modules/cars/repositories/ICategoryRepository';
+import { Category } from '@shared/infra/database/typeorm/entities/Category';
 
 @injectable()
 class ListCategoryUseCase implements IUseCase<void, Category[]> {

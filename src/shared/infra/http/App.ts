@@ -5,10 +5,10 @@ import 'express-async-errors';
 import path from 'path';
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
-import routes from './routes';
-import './shared/container';
-import './shared/database';
-import { ExceptionValidation } from './shared/errors/ExceptionValidation';
+import routes from '@shared/infra/http/routes';
+import '@shared/core/container';
+import '@shared/infra/database';
+import { ExceptionValidation } from '../../core/errors/ExceptionValidation';
 
 class App {
   private express: Express;
@@ -28,7 +28,7 @@ class App {
   }
 
   private setupOpenApi() {
-    const swaggerDocumentPath = path.resolve(__dirname, './swagger.yml');
+    const swaggerDocumentPath = path.resolve(__dirname, '..', '..', '..', './swagger.yml');
     this.express.use('/api', swaggerUi.serve, swaggerUi.setup(YAML.load(swaggerDocumentPath)));
   }
 

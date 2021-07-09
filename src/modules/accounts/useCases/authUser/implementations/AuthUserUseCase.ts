@@ -1,11 +1,11 @@
 import { inject, injectable } from 'tsyringe';
-import { IUserRepository } from '@modules/accounts/repositories/interfaces/IUserRepository';
+import { IUserRepository } from '@modules/accounts/repositories/IUserRepository';
 import { IRequestAuth } from '@modules/accounts/useCases/authUser/dto/IRequestAuth';
 import { IResponseAuth } from '@modules/accounts/useCases/authUser/dto/IResponseAuth';
-import { User } from '@shared/database/typeorm/entities/User';
-import { AppError } from '@shared/errors/AppError';
-import { AuthProvider } from '@shared/providers/implementations/AuthProvider';
-import { ICrypt } from '@shared/providers/interfaces/ICrypt';
+import { AppError } from '@shared/core/errors/AppError';
+import { User } from '@shared/infra/database/typeorm/entities/User';
+import { AuthProvider } from '@shared/core/providers/implementations/AuthProvider';
+import { ICrypt } from '@shared/core/providers/interfaces/ICrypt';
 
 @injectable()
 class AuthUserUseCase implements IUseCase<IRequestAuth, IResponseAuth> {

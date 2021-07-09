@@ -9,7 +9,7 @@ import {
 import uploadConfig from '@shared/config/upload';
 import {
   ensureAuthenticatedMiddlware,
-} from '@shared/middlewares/EnsureAuthenticatedMiddleware';
+} from '@shared/infra/http/middlewares/EnsureAuthenticatedMiddleware';
 
 const accountRoutes = Router();
 const uploadAvatar = multer(uploadConfig.upload('./tmp/avatar'));

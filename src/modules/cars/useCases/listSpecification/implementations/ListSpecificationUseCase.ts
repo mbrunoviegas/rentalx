@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe';
-import { ISpecificationRepository } from '@modules/cars/repositories/interfaces/ISpecificationRepository';
-import { Specification } from '@shared/database/typeorm/entities/Specification';
+import { ISpecificationRepository } from '@modules/cars/repositories/ISpecificationRepository';
+import { Specification } from '@shared/infra/database/typeorm/entities/Specification';
 
 @injectable()
 class ListSpecificationUseCase implements IUseCase<void, Specification[]> {

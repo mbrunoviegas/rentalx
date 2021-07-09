@@ -1,9 +1,9 @@
 import csvParse from 'csv-parse';
 import fs from 'fs';
 import { inject, injectable } from 'tsyringe';
-import { ICategoryRepository } from '@modules/cars/repositories/interfaces/ICategoryRepository';
+import { ICategoryRepository } from '@modules/cars/repositories/ICategoryRepository';
 import { IParsedCategory } from '@modules/cars/useCases/importCategory/interfaces/IParsedCategory';
-import { AppError } from '@shared/errors/AppError';
+import { AppError } from '@shared/core/errors/AppError';
 
 @injectable()
 class ImportCategoryUseCase implements IUseCase<Express.Multer.File, void> {

@@ -1,5 +1,5 @@
 import { compare, hash } from 'bcryptjs';
-import { ICrypt } from '@shared/providers/interfaces/ICrypt';
+import { ICrypt } from '@shared/core/providers/interfaces/ICrypt';
 
 class CryptProvider implements ICrypt {
   async encrypt(prop: string): Promise<string> {
