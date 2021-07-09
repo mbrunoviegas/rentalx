@@ -3,7 +3,7 @@ import { User } from '../../../../../shared/database/typeorm/entities/User';
 import { AppError } from '../../../../../shared/errors/AppError';
 import { AuthProvider } from '../../../../../shared/providers/implementations/AuthProvider';
 import { ICrypt } from '../../../../../shared/providers/interfaces/ICrypt';
-import { UserRepository } from '../../../repositories/implementations/UserRepository';
+import { IUserRepository } from '../../../repositories/interfaces/IUserRepository';
 import { IRequestAuth } from '../dto/IRequestAuth';
 import { IResponseAuth } from '../dto/IResponseAuth';
 
@@ -11,7 +11,7 @@ import { IResponseAuth } from '../dto/IResponseAuth';
 class AuthUserUseCase implements IUseCase<IRequestAuth, IResponseAuth> {
   constructor(
     @inject('UserRepository')
-    private userRepository: UserRepository,
+    private userRepository: IUserRepository,
     @inject('CryptProvider')
     private cryptProvider: ICrypt,
   ) { }

@@ -12,6 +12,7 @@ class CreateCategoryUseCase implements IUseCase<ICreateCategoryRequestDTO, void>
 
   async execute({ name, description }: ICreateCategoryRequestDTO): Promise<void> {
     const categoryAlreadyExists = await this.categoryRepository.findByName(name);
+
     if (categoryAlreadyExists) {
       throw new AppError('Category already exists');
     }
