@@ -39,10 +39,7 @@
       "error",
       "below"
     ],
-    "linebreak-style": [
-      "warn",
-      "unix"
-    ],
+    "linebreak-style": "off",
     "brace-style": [
       "error",
       "1tbs"
@@ -66,7 +63,7 @@
       {
         "groups": [
           "module",
-          "/^@shared/",
+          "/^@/",
           [
             "parent",
             "sibling",

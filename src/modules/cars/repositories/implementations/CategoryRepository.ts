@@ -1,7 +1,7 @@
 import { getRepository, Repository } from 'typeorm';
-import { Category } from '../../../../shared/database/typeorm/entities/Category';
-import { ICreateCategoryDTO } from '../dto/ICreateCategoryDTO';
-import { ICategoryRepository } from '../interfaces/ICategoryRepository';
+import { ICreateCategoryDTO } from '@modules/cars/repositories/dto/ICreateCategoryDTO';
+import { ICategoryRepository } from '@modules/cars/repositories/interfaces/ICategoryRepository';
+import { Category } from '@shared/database/typeorm/entities/Category';
 
 class CategoryRepository implements ICategoryRepository {
   private repository: Repository<Category>;

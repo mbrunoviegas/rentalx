@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { AppError } from '../errors/AppError';
-import { AuthProvider } from '../providers/implementations/AuthProvider';
+import { AppError } from '@shared/errors/AppError';
+import { AuthProvider } from '@shared/providers/implementations/AuthProvider';
 
 interface IPayload {
   sub: string;

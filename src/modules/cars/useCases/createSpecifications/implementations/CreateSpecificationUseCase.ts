@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
-import { AppError } from '../../../../../shared/errors/AppError';
-import { ISpecificationRepository } from '../../../repositories/interfaces/ISpecificationRepository';
-import { ICreateCategoryRequestDTO } from '../../createCategory/dto/ICreateCategoryRequestDTO';
+import { ISpecificationRepository } from '@modules/cars/repositories/interfaces/ISpecificationRepository';
+import { ICreateCategoryRequestDTO } from '@modules/cars/useCases/createCategory/dto/ICreateCategoryRequestDTO';
+import { AppError } from '@shared/errors/AppError';
 
 @injectable()
 class CreateSpecificationUseCase implements IUseCase<ICreateCategoryRequestDTO, void> {

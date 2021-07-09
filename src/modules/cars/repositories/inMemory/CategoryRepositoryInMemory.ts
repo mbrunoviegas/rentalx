@@ -1,6 +1,6 @@
-import { Category } from '../../../../shared/database/typeorm/entities/Category';
-import { ICreateCategoryDTO } from '../dto/ICreateCategoryDTO';
-import { ICategoryRepository } from '../interfaces/ICategoryRepository';
+import { ICreateCategoryDTO } from '@modules/cars/repositories/dto/ICreateCategoryDTO';
+import { ICategoryRepository } from '@modules/cars/repositories/interfaces/ICategoryRepository';
+import { Category } from '@shared/database/typeorm/entities/Category';
 
 export class CategoriesRepositoryInMemory implements ICategoryRepository {
   private categories: Category[] = [];

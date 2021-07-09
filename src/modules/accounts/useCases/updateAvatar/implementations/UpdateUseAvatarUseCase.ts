@@ -1,11 +1,11 @@
 import { inject, injectable } from 'tsyringe';
-import { User } from '../../../../../shared/database/typeorm/entities/User';
-import { AppError } from '../../../../../shared/errors/AppError';
-import { FileUtils } from '../../../../../shared/utils/FileUtils';
 import {
   IUserRepository,
-} from '../../../repositories/interfaces/IUserRepository';
-import { IRequestUpdateAvatar } from '../dto/IRequestUpdateAvatar';
+} from '@modules/accounts/repositories/interfaces/IUserRepository';
+import { IRequestUpdateAvatar } from '@modules/accounts/useCases/updateAvatar/dto/IRequestUpdateAvatar';
+import { User } from '@shared/database/typeorm/entities/User';
+import { AppError } from '@shared/errors/AppError';
+import { FileUtils } from '@shared/utils/FileUtils';
 
 @injectable()
 class UpdateUseAvatarUseCase implements IUseCase<IRequestUpdateAvatar, void> {

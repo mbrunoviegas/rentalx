@@ -4,7 +4,7 @@ import { resolve } from 'path';
 
 export class FileUtils {
   static async deleteFile(avatarPath: string): Promise<void> {
-    const filePath = resolve(__dirname, '..', '..', avatarPath);
+    const filePath = resolve(__dirname, '..', '..', '..', avatarPath);
     try {
       await fs.promises.stat(filePath);
       await fs.promises.unlink(filePath);
