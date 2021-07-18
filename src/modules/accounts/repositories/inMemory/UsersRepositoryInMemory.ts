@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import { IUserRepository } from '@modules/accounts/repositories/IUserRepository';
 import { ICreateUserDTO } from '@modules/accounts/useCases/createUser/dto/ICreateUserDTO';
-import { User } from '@shared/infra/database/typeorm/entities/Userr
+import { User } from '@shared/infra/database/typeorm/entities/User';
 
 export class UserRespositoryInMemory implements IUserRepository {
   private users: User[] = [];

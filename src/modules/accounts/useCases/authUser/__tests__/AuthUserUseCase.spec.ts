@@ -1,9 +1,9 @@
 import { UserRespositoryInMemory } from '@modules/accounts/repositories/inMemory/UsersRepositoryInMemory';
 import { AuthUserUseCase } from '@modules/accounts/useCases/authUser/implementations/AuthUserUseCase';
 import { CreateUserUseCase } from '@modules/accounts/useCases/createUser/implementations/CreateUserUseCase';
-import { AppError } from '@shared/errors/AppError';
-import { CryptProvider } from '@shared/providers/implementations/CryptProvider';
-import { ICrypt } from '@shared/providers/interfaces/ICrypt';
+import { AppError } from '@shared/core/errors/AppError';
+import { CryptProvider } from '@shared/core/providers/implementations/CryptProvider';
+import { ICrypt } from '@shared/core/providers/interfaces/ICrypt';
 
 describe('Auth User Use Case', () => {
   let authUserUseCase: AuthUserUseCase;
