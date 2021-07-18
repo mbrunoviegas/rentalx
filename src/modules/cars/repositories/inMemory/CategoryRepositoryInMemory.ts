@@ -2,7 +2,7 @@ import { ICreateCategoryDTO } from '@modules/cars/repositories/dto/ICreateCatego
 import { ICategoryRepository } from '@modules/cars/repositories/ICategoryRepository';
 import { Category } from '@shared/infra/database/typeorm/entities/Category';
 
-export class CategoriesRepositoryInMemory implements ICategoryRepository {
+class CategoriesRepositoryInMemory implements ICategoryRepository {
   private categories: Category[] = [];
 
   async create({ name, description }: ICreateCategoryDTO): Promise<void> {
@@ -24,3 +24,5 @@ export class CategoriesRepositoryInMemory implements ICategoryRepository {
     return this.categories;
   }
 }
+
+export { CategoriesRepositoryInMemory };

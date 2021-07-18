@@ -1,6 +1,6 @@
 import { CategoriesRepositoryInMemory } from '@modules/cars/repositories/inMemory/CategoryRepositoryInMemory';
 import { CreateCategoryUseCase } from '@modules/cars/useCases/createCategory/implementations/CreateCategoryUseCase';
-import { AppError } from '@shared/errors/AppError';
+import { AppError } from '@shared/core/errors/AppError';
 
 describe('Create Category Use Case', () => {
   let createCategoryUseCase: CreateCategoryUseCase;
