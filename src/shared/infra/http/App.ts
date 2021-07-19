@@ -5,10 +5,10 @@ import 'express-async-errors';
 import path from 'path';
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
+import createConnection from '@shared/infra/database';
 import routes from '@shared/infra/http/routes';
-import '@shared/core/container';
-import '@shared/infra/database';
 import { ExceptionValidation } from '../../core/errors/ExceptionValidation';
+import '@shared/core/container';
 
 class App {
   private express: Express;
@@ -17,6 +17,9 @@ class App {
   constructor() {
     this.express = express();
     this.express.use(express.json());
+
+    createConnection();
+
     this.setupOpenApi();
     this.getRoutes();
     this.setupExceptionHandler();
