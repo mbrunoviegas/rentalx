@@ -1,22 +1,37 @@
-import { v4 as uuid } from 'uuid';
+import {
+  Column, Entity, JoinColumn, ManyToOne,
+} from 'typeorm';
+import { BaseEntitiy } from './BaseEntity';
+import { Category } from './Category';
 
-export class Car {
-  id: string;
+@Entity('cars')
+export class Car extends BaseEntitiy {
+  @Column()
   name: string;
-  description: string;
-  daily_rate: number;
-  license_plate: string;
-  fine_amount: number;
-  brand: string;
-  category_id: string;
-  available: boolean;
-  created_at: Date;
 
-  constructor() {
-    if (!this.id) {
-      this.id = uuid();
-      this.available = true;
-      this.created_at = new Date();
-    }
-  }
+  @Column()
+  description: string;
+
+  @Column()
+  daily_rate: number;
+
+  @Column()
+  license_plate: string;
+
+  @Column()
+  fine_amount: number;
+
+  @Column()
+  brand: string;
+
+  @ManyToOne(() =>
+    Category)
+  @JoinColumn({ name: 'category_id' })
+  category: Category;
+
+  @Column()
+  category_id: string;
+
+  @Column({ default: true })
+  available: boolean;
 }
