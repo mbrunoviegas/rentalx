@@ -1,11 +1,11 @@
 import { Car } from '@shared/infra/database/typeorm/entities/Car';
 import { ICreateCarRequestDTO } from '../useCases/createCar/dto/ICreateCarRequestDTO';
-import { IListCarRequestDTO } from '../useCases/listCar/dto/IListCarRequestDTO';
+import { IListAvailableCarsRequestDTO } from '../useCases/listAvailableCars/dto/IListAvailableCarsRequestDTO';
 
-interface ICarRepository {
+interface ICarsRepository {
   create(props: ICreateCarRequestDTO): Promise<Car>;
   findByLicensePlate(license_plate: string): Promise<Car | undefined>;
-  listAllAvailable(filterOptions: IListCarRequestDTO): Promise<Car[]>
+  listAllAvailable(filterOptions: IListAvailableCarsRequestDTO): Promise<Car[]>
 }
 
-export { ICarRepository };
+export { ICarsRepository };

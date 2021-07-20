@@ -1,10 +1,10 @@
 import { v4 as uuid } from 'uuid';
 import { ICreateCarRequestDTO } from '@modules/cars/useCases/createCar/dto/ICreateCarRequestDTO';
-import { IListCarRequestDTO } from '@modules/cars/useCases/listCar/dto/IListCarRequestDTO';
+import { IListAvailableCarsRequestDTO } from '@modules/cars/useCases/listAvailableCars/dto/IListAvailableCarsRequestDTO';
 import { Car } from '@shared/infra/database/typeorm/entities/Car';
-import { ICarRepository } from '../ICarRepository';
+import { ICarsRepository } from '../ICarsRepository';
 
-class CarRepositoryInMemory implements ICarRepository {
+class CarsRepositoryInMemory implements ICarsRepository {
   private cars: Car[] = [];
 
   async create(props: ICreateCarRequestDTO): Promise<Car> {
@@ -24,7 +24,7 @@ class CarRepositoryInMemory implements ICarRepository {
       car.license_plate === license_plate);
   }
 
-  async listAllAvailable({ brand, category_id, name }: IListCarRequestDTO): Promise<Car[]> {
+  async listAllAvailable({ brand, category_id, name }: IListAvailableCarsRequestDTO): Promise<Car[]> {
     let cars = this.cars.filter((car) =>
       car.available);
 
@@ -47,4 +47,4 @@ class CarRepositoryInMemory implements ICarRepository {
   }
 }
 
-export { CarRepositoryInMemory };
+export { CarsRepositoryInMemory };

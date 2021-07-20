@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import { ICarRepository } from '@modules/cars/repositories/ICarRepository';
+import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
 import { AppError } from '@shared/core/errors/AppError';
 import { Car } from '@shared/infra/database/typeorm/entities/Car';
 import { ICreateCarRequestDTO } from '../dto/ICreateCarRequestDTO';
@@ -7,8 +7,8 @@ import { ICreateCarRequestDTO } from '../dto/ICreateCarRequestDTO';
 @injectable()
 class CreateCarUseCase implements IUseCase<ICreateCarRequestDTO, Car> {
   constructor(
-    @inject('CarRepository')
-    private carsRepository: ICarRepository,
+    @inject('CarsRepository')
+    private carsRepository: ICarsRepository,
   ) { }
 
   async execute(requestProps: ICreateCarRequestDTO): Promise<Car> {

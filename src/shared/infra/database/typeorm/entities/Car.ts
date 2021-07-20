@@ -1,8 +1,9 @@
 import {
-  Column, Entity, JoinColumn, ManyToOne,
+  Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne,
 } from 'typeorm';
 import { BaseEntitiy } from './BaseEntity';
 import { Category } from './Category';
+import { Specification } from './Specification';
 
 @Entity('cars')
 export class Car extends BaseEntitiy {
@@ -28,6 +29,15 @@ export class Car extends BaseEntitiy {
     Category)
   @JoinColumn({ name: 'category_id' })
   category: Category;
+
+  @ManyToMany(() =>
+    Specification)
+  @JoinTable({
+    name: 'specifications_cars',
+    joinColumns: [{ name: 'car_id' }],
+    inverseJoinColumns: [{ name: 'specification_id' }],
+  })
+  specifications: Specification[];
 
   @Column()
   category_id: string;

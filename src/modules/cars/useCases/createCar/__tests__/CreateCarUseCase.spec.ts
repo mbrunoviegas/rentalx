@@ -1,5 +1,5 @@
-import { ICarRepository } from '@modules/cars/repositories/ICarRepository';
-import { CarRepositoryInMemory } from '@modules/cars/repositories/inMemory/CarRepositoryInMemory';
+import { ICarRepository } from '@modules/cars/repositories/ICarsRepository';
+import { CarRepositoryInMemory } from '@modules/cars/repositories/inMemory/CarsRepositoryInMemory';
 import { AppError } from '@shared/core/errors/AppError';
 import { ICreateCarRequestDTO } from '../dto/ICreateCarRequestDTO';
 import { CreateCarUseCase } from '../implementations/CreateCarUseCase';
