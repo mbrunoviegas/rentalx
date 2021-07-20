@@ -6,6 +6,7 @@ interface ICarsRepository {
   create(props: ICreateCarRequestDTO): Promise<Car>;
   findByLicensePlate(license_plate: string): Promise<Car | undefined>;
   listAllAvailable(filterOptions: IListAvailableCarsRequestDTO): Promise<Car[]>
+  findById(id: string): Promise<Car>;
 }
 
 export { ICarsRepository };
