@@ -1,0 +1,139 @@
+import { DeepPartial } from 'typeorm';
+import { ICarRepository } from '@modules/cars/repositories/ICarRepository';
+import { CarRepositoryInMemory } from '@modules/cars/repositories/inMemory/CarRepositoryInMemory';
+import { Car } from '@shared/infra/database/typeorm/entities/Car';
+import { ListCarUseCase } from '../ListCarUseCase';
+
+describe('List Car Use Case', () => {
+  let listCarUseCase: ListCarUseCase;
+  let carRepository: ICarRepository;
+
+  beforeEach(() => {
+    carRepository = new CarRepositoryInMemory();
+    listCarUseCase = new ListCarUseCase(carRepository);
+  });
+
+  it('Should list all available cars', async () => {
+    const car: DeepPartial<Car> = {
+      name: 'Test',
+      description: 'Test car',
+      daily_rate: 100.00,
+      fine_amount: 50.00,
+      license_plate: 'TST1234',
+      brand: 'TEST',
+      category_id: '123456789',
+      available: true,
+    };
+
+    await carRepository.create(car as Car);
+
+    const spyOnListAvailable = jest.spyOn(carRepository, 'listAllAvailable');
+
+    const cars = await listCarUseCase.execute({});
+
+    expect(spyOnListAvailable).toHaveBeenCalled();
+    expect(cars).toMatchObject([car]);
+  });
+
+  it('Should list all available cars by name', async () => {
+    const car: DeepPartial<Car> = {
+      name: 'Test',
+      description: 'Test car',
+      daily_rate: 100.00,
+      fine_amount: 50.00,
+      license_plate: 'TST1234',
+      brand: 'TEST',
+      category_id: '123456789',
+      available: true,
+    };
+
+    const car1: DeepPartial<Car> = {
+      name: 'Test 1',
+      description: 'Test car',
+      daily_rate: 100.00,
+      fine_amount: 50.00,
+      license_plate: 'TST1234',
+      brand: 'TEST',
+      category_id: '123456789',
+      available: true,
+    };
+
+    await carRepository.create(car as Car);
+    await carRepository.create(car1 as Car);
+
+    const spyOnListAvailable = jest.spyOn(carRepository, 'listAllAvailable');
+
+    const cars = await listCarUseCase.execute({ name: 'Test' });
+
+    expect(spyOnListAvailable).toHaveBeenCalled();
+    expect(cars).toMatchObject([car]);
+  });
+
+  it('Should list all available cars by brand', async () => {
+    const car: DeepPartial<Car> = {
+      name: 'Test',
+      description: 'Test car',
+      daily_rate: 100.00,
+      fine_amount: 50.00,
+      license_plate: 'TST1234',
+      brand: 'TEST',
+      category_id: '123456789',
+      available: true,
+    };
+
+    const car1: DeepPartial<Car> = {
+      name: 'Test 1',
+      description: 'Test car',
+      daily_rate: 100.00,
+      fine_amount: 50.00,
+      license_plate: 'TST1234',
+      brand: 'TEST 1',
+      category_id: '123456789',
+      available: true,
+    };
+
+    await carRepository.create(car as Car);
+    await carRepository.create(car1 as Car);
+
+    const spyOnListAvailable = jest.spyOn(carRepository, 'listAllAvailable');
+
+    const cars = await listCarUseCase.execute({ brand: 'TEST' });
+
+    expect(spyOnListAvailable).toHaveBeenCalled();
+    expect(cars).toMatchObject([car]);
+  });
+
+  it('Should list all available cars by category_id', async () => {
+    const car: DeepPartial<Car> = {
+      name: 'Test',
+      description: 'Test car',
+      daily_rate: 100.00,
+      fine_amount: 50.00,
+      license_plate: 'TST1234',
+      brand: 'TEST',
+      category_id: '123456789',
+      available: true,
+    };
+
+    const car1: DeepPartial<Car> = {
+      name: 'Test 1',
+      description: 'Test car',
+      daily_rate: 100.00,
+      fine_amount: 50.00,
+      license_plate: 'TST1234',
+      brand: 'TEST',
+      category_id: '111111111',
+      available: true,
+    };
+
+    await carRepository.create(car as Car);
+    await carRepository.create(car1 as Car);
+
+    const spyOnListAvailable = jest.spyOn(carRepository, 'listAllAvailable');
+
+    const cars = await listCarUseCase.execute({ category_id: '123456789' });
+
+    expect(spyOnListAvailable).toHaveBeenCalled();
+    expect(cars).toMatchObject([car]);
+  });
+});
