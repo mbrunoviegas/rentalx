@@ -1,8 +1,10 @@
 import { container } from 'tsyringe';
 import { UserRepository } from '@modules/accounts/repositories/implementations/UserRepository';
 import { IUserRepository } from '@modules/accounts/repositories/IUserRepository';
-import { ICarRepository } from '@modules/cars/repositories/ICarsRepository';
+import { ICarsImageRepository } from '@modules/cars/repositories/ICarsImageRepository';
+import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
 import { ICategoryRepository } from '@modules/cars/repositories/ICategoryRepository';
+import { CarsImageRepository } from '@modules/cars/repositories/implementations/CarsImageRepository';
 import { CarsRepository } from '@modules/cars/repositories/implementations/CarsRepository';
 import { CategoryRepository } from '@modules/cars/repositories/implementations/CategoryRepository';
 import { SpecificationRepository } from '@modules/cars/repositories/implementations/SpecificationRepository';
@@ -27,4 +29,9 @@ container.registerSingleton<IUserRepository>(
 
 container.register<ICrypt>('CryptProvider', CryptProvider);
 
-container.registerSingleton<ICarRepository>('CarsRepository', CarsRepository);
+container.registerSingleton<ICarsRepository>('CarsRepository', CarsRepository);
+
+container.registerSingleton<ICarsImageRepository>(
+  'CarsImageRepository',
+  CarsImageRepository,
+);
