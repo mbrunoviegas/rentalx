@@ -11,7 +11,7 @@ class CarsRepositoryInMemory implements ICarsRepository {
     const car = new Car();
     Object.assign(car, {
       ...props,
-      id: uuid(),
+      id: props.id ? props.id : uuid(),
       available: true,
     });
     this.cars.push(car);

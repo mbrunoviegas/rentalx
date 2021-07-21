@@ -1,15 +1,15 @@
-import { ICarRepository } from '@modules/cars/repositories/ICarsRepository';
-import { CarRepositoryInMemory } from '@modules/cars/repositories/inMemory/CarsRepositoryInMemory';
+import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
+import { CarsRepositoryInMemory } from '@modules/cars/repositories/inMemory/CarsRepositoryInMemory';
 import { AppError } from '@shared/core/errors/AppError';
 import { ICreateCarRequestDTO } from '../dto/ICreateCarRequestDTO';
 import { CreateCarUseCase } from '../implementations/CreateCarUseCase';
 
 describe('Create Car Use Case', () => {
   let createCarUseCase: CreateCarUseCase;
-  let carsRepository: ICarRepository;
+  let carsRepository: ICarsRepository;
 
   beforeEach(() => {
-    carsRepository = new CarRepositoryInMemory();
+    carsRepository = new CarsRepositoryInMemory();
     createCarUseCase = new CreateCarUseCase(carsRepository);
   });
 

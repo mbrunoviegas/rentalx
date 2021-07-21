@@ -24,7 +24,8 @@ class CarsRepository implements ICarsRepository {
   async listAllAvailable({ brand, name, category_id }: IListAvailableCarsRequestDTO): Promise<Car[]> {
     const carsQueryBuilder = this.repository.createQueryBuilder('c');
 
-    carsQueryBuilder.where('c.available = :available', { available: true });
+    carsQueryBuilder
+      .where('c.available = :available', { available: true });
 
     if (brand) {
       carsQueryBuilder.andWhere('c.brand = :brand', { brand });
@@ -41,6 +42,10 @@ class CarsRepository implements ICarsRepository {
     const cars = await carsQueryBuilder.getMany();
 
     return cars;
+  }
+
+  async findById(id: string): Promise<Car> {
+    return this.repository.findOne(id);
   }
 }
 

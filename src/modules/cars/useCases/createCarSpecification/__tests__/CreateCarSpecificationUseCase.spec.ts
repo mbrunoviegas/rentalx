@@ -51,10 +51,11 @@ describe('Create Car Specification Use Case', () => {
       specifications_id: [specification.id],
     });
 
-    car.specifications = Array.of(specification);
+    car.specifications = [specification];
     const updatedCar = await carsRepository.findById(car.id);
 
     expect(spyOnFindByIds).toHaveBeenCalled();
+    expect(car.id).toEqual(updatedCar.id);
     expect(updatedCar).toEqual(car);
   });
 });

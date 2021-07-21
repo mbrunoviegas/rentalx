@@ -1,16 +1,16 @@
 import { DeepPartial } from 'typeorm';
-import { ICarRepository } from '@modules/cars/repositories/ICarsRepository';
-import { CarRepositoryInMemory } from '@modules/cars/repositories/inMemory/CarsRepositoryInMemory';
+import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
+import { CarsRepositoryInMemory } from '@modules/cars/repositories/inMemory/CarsRepositoryInMemory';
 import { Car } from '@shared/infra/database/typeorm/entities/Car';
-import { ListCarUseCase } from '../implementations/ListAvailableCarsUseCase';
+import { ListAvailableCarsUseCase } from '../implementations/ListAvailableCarsUseCase';
 
 describe('List Car Use Case', () => {
-  let listCarUseCase: ListCarUseCase;
-  let carRepository: ICarRepository;
+  let listCarUseCase: ListAvailableCarsUseCase;
+  let carRepository: ICarsRepository;
 
   beforeEach(() => {
-    carRepository = new CarRepositoryInMemory();
-    listCarUseCase = new ListCarUseCase(carRepository);
+    carRepository = new CarsRepositoryInMemory();
+    listCarUseCase = new ListAvailableCarsUseCase(carRepository);
   });
 
   it('Should list all available cars', async () => {
