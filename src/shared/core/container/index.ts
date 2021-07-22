@@ -9,8 +9,12 @@ import { CarsRepository } from '@modules/cars/repositories/implementations/CarsR
 import { CategoryRepository } from '@modules/cars/repositories/implementations/CategoryRepository';
 import { SpecificationRepository } from '@modules/cars/repositories/implementations/SpecificationRepository';
 import { ISpecificationRepository } from '@modules/cars/repositories/ISpecificationRepository';
+import { RentalsRepository } from '@modules/rentals/repositories/implementations/RentalsRepository';
+import { IRentalsRepository } from '@modules/rentals/repositories/IRentalsRepository';
 import { CryptProvider } from '@shared/core/providers/implementations/CryptProvider';
 import { ICrypt } from '@shared/core/providers/interfaces/ICrypt';
+import { DateProvider } from '../providers/implementations/DateProvider';
+import { IDateProvider } from '../providers/interfaces/IDateProvider';
 
 container.registerSingleton<ICategoryRepository>(
   'CategoryRepository',
@@ -34,4 +38,14 @@ container.registerSingleton<ICarsRepository>('CarsRepository', CarsRepository);
 container.registerSingleton<ICarsImageRepository>(
   'CarsImageRepository',
   CarsImageRepository,
+);
+
+container.registerSingleton<IRentalsRepository>(
+  'RentalsRepository',
+  RentalsRepository,
+);
+
+container.registerSingleton<IDateProvider>(
+  'DateProvider',
+  DateProvider,
 );
