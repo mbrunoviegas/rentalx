@@ -28,6 +28,8 @@ export class RentalsMigration1626908560021 implements MigrationInterface {
         {
           name: 'end_date',
           type: 'timestamp',
+          isNullable: true,
+          default: null,
         },
         {
           name: 'expected_return_date',
