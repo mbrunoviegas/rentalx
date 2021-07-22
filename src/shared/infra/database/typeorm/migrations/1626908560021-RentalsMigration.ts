@@ -23,6 +23,7 @@ export class RentalsMigration1626908560021 implements MigrationInterface {
         {
           name: 'start_date',
           type: 'timestamp',
+          default: 'now()',
         },
         {
           name: 'end_date',
@@ -39,10 +40,12 @@ export class RentalsMigration1626908560021 implements MigrationInterface {
         {
           name: 'created_at',
           type: 'timestamp',
+          default: 'now()',
         },
         {
           name: 'updated_at',
           type: 'timestamp',
+          default: 'now()',
         },
       ],
       foreignKeys: [
