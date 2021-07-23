@@ -10,8 +10,7 @@ class ListCategoryUseCase implements IUseCase<void, Category[]> {
   ) { }
 
   async execute(): Promise<Category[]> {
-    const categories: Category[] = await this.categoryRepository.list();
-    return categories;
+    return this.categoryRepository.list();
   }
 }
 

@@ -10,39 +10,54 @@ import routes from '@shared/infra/http/routes';
 import { ExceptionValidation } from '../../core/errors/ExceptionValidation';
 import '@shared/core/container';
 
-class App {
-  private express: Express;
-  private routes: Router;
+createConnection();
+const app = express();
 
-  constructor() {
-    this.express = express();
-    this.express.use(express.json());
+app.use(express.json());
 
-    createConnection();
+const swaggerDocumentPath = path.resolve(__dirname, '..', '..', '..', './swagger.yml');
+app.use('/api', swaggerUi.serve, swaggerUi.setup(YAML.load(swaggerDocumentPath)));
 
-    this.setupOpenApi();
-    this.getRoutes();
-    this.setupExceptionHandler();
-  }
+app.use(routes);
 
-  private setupExceptionHandler() {
-    const exceptionValidation = new ExceptionValidation();
-    this.express.use(exceptionValidation.catchError);
-  }
+const exceptionValidation = new ExceptionValidation();
+app.use(exceptionValidation.catchError);
 
-  private setupOpenApi() {
-    const swaggerDocumentPath = path.resolve(__dirname, '..', '..', '..', './swagger.yml');
-    this.express.use('/api', swaggerUi.serve, swaggerUi.setup(YAML.load(swaggerDocumentPath)));
-  }
+export { app };
 
-  private getRoutes() {
-    this.routes = routes;
-    this.express.use(this.routes);
-  }
+// class App {
+//   private express: Express;
+//   private routes: Router;
 
-  get app(): Express {
-    return this.express;
-  }
-}
+//   constructor() {
+//     this.express = express();
+//     this.express.use(express.json());
 
-export default new App().app;
+//     createConnection();
+
+//     this.setupOpenApi();
+//     this.getRoutes();
+//     this.setupExceptionHandler();
+//   }
+
+//   private setupExceptionHandler() {
+//     const exceptionValidation = new ExceptionValidation();
+//     this.express.use(exceptionValidation.catchError);
+//   }
+
+//   private setupOpenApi() {
+//     const swaggerDocumentPath = path.resolve(__dirname, '..', '..', '..', './swagger.yml');
+//     this.express.use('/api', swaggerUi.serve, swaggerUi.setup(YAML.load(swaggerDocumentPath)));
+//   }
+
+//   private getRoutes() {
+//     this.routes = routes;
+//     this.express.use(this.routes);
+//   }
+
+//   get app(): Express {
+//     return this.express;
+//   }
+// }
+
+// export default new App().app;
