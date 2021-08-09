@@ -37,16 +37,13 @@ class DevolutionRentalUseCase implements IUseCase<IDevolutionRentalRequestDTO, R
       dateNow,
       rental.expected_return_date,
     );
-    console.log(delay);
     const car = await this.carsReposiroy.findById(rental.car_id);
 
     if (delay > 0) {
       total = delay * car.fine_amount;
-      console.log(total);
     }
 
     total += daily * car.daily_rate;
-    console.log(total);
 
     rental.end_date = this.dateProvider.dateNow();
     rental.total = total;
