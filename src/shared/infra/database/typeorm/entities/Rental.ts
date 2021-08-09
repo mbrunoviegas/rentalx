@@ -1,8 +1,16 @@
-import { Column, Entity, UpdateDateColumn } from 'typeorm';
+import {
+  Column, Entity, JoinColumn, ManyToOne, UpdateDateColumn,
+} from 'typeorm';
 import { BaseEntitiy } from './BaseEntity';
+import { Car } from './Car';
 
 @Entity('rentals')
 class Rental extends BaseEntitiy {
+  @ManyToOne(() =>
+    Car)
+  @JoinColumn({ name: 'car_id' })
+  car: Car;
+
   @Column()
   car_id: string;
 
