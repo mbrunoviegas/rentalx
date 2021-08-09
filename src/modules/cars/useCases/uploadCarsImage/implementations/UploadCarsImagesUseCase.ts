@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import { ICarsImageRepository } from '@modules/cars/repositories/ICarsImageRepository';
-import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
+import { ICarsRepository } from '@shared/infra/database/typeorm/repositories/ICarsRepository';
 import { AppError } from '@shared/core/errors/AppError';
 import { FileUtils } from '@shared/utils/FileUtils';
 import { ICarsImagesRequestDTO } from '../dto/IUploadCarsImagesRequestDTO';

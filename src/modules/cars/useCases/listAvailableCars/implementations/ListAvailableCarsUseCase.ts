@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
+import { ICarsRepository } from '@shared/infra/database/typeorm/repositories/ICarsRepository';
 import { Car } from '@shared/infra/database/typeorm/entities/Car';
 import { IListAvailableCarsRequestDTO } from '../dto/IListAvailableCarsRequestDTO';
 

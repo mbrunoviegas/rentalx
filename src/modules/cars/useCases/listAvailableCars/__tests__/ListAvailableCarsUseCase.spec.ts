@@ -1,6 +1,6 @@
 import { DeepPartial } from 'typeorm';
-import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
-import { CarsRepositoryInMemory } from '@modules/cars/repositories/inMemory/CarsRepositoryInMemory';
+import { ICarsRepository } from '@shared/infra/database/typeorm/repositories/ICarsRepository';
+import { CarsRepositoryInMemory } from '@shared/infra/database/typeorm/repositories/inMemory/CarsRepositoryInMemory';
 import { Car } from '@shared/infra/database/typeorm/entities/Car';
 import { ListAvailableCarsUseCase } from '../implementations/ListAvailableCarsUseCase';
 

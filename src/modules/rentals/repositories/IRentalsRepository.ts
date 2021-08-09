@@ -5,6 +5,8 @@ interface IRentalsRepository {
   create(props: ICreateRental): Promise<Rental>;
   findOpenRentalByCarId(car_id: string): Promise<Rental>;
   findOpenRentalByUserId(user_id: string): Promise<Rental>;
+  findById(id: string): Promise<Rental>;
+  findOpenById(id: string): Promise<Rental>;
 }
 
 export { IRentalsRepository };

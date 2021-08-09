@@ -1,6 +1,6 @@
-import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
+import { ICarsRepository } from '@shared/infra/database/typeorm/repositories/ICarsRepository';
 import { SpecificationRepository } from '@modules/cars/repositories/implementations/SpecificationRepository';
-import { CarsRepositoryInMemory } from '@modules/cars/repositories/inMemory/CarsRepositoryInMemory';
+import { CarsRepositoryInMemory } from '@shared/infra/database/typeorm/repositories/inMemory/CarsRepositoryInMemory';
 import { SpecificationsRepositoryInMemory } from '@modules/cars/repositories/inMemory/SpecificationsRepositoryInMemory';
 import { ISpecificationRepository } from '@modules/cars/repositories/ISpecificationRepository';
 import { AppError } from '@shared/core/errors/AppError';

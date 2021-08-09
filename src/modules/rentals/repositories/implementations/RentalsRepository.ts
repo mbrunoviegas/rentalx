@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, IsNull, Repository } from 'typeorm';
 import { ICreateRental } from '@modules/rentals/dto/ICreateRental';
 import { Rental } from '@shared/infra/database/typeorm/entities/Rental';
 import { IRentalsRepository } from '../IRentalsRepository';
@@ -29,6 +29,18 @@ class RentalsRepository implements IRentalsRepository {
       where: {
         user_id,
         end_date: null,
+      },
+    });
+  }
+
+  async findById(id: string): Promise<Rental> {
+    return this.repository.findOne(id);
+  }
+
+  async findOpenById(id: string): Promise<Rental> {
+    return this.repository.findOne(id, {
+      where: {
+        end_date: IsNull(),
       },
     });
   }
