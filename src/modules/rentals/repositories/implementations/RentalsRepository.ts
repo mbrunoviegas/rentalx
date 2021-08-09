@@ -40,7 +40,7 @@ class RentalsRepository implements IRentalsRepository {
   async findOpenById(id: string): Promise<Rental> {
     return this.repository.findOne(id, {
       where: {
-        end_date: IsNull(),
+        end_date: null,
       },
     });
   }

@@ -17,7 +17,7 @@ class DevolutionRentalUseCase implements IUseCase<IDevolutionRentalRequestDTO, R
     private dateProvider: IDateProvider,
   ) { }
 
-  async execute({ rental_id, user_id }: IDevolutionRentalRequestDTO): Promise<Rental> {
+  async execute({ rental_id }: IDevolutionRentalRequestDTO): Promise<Rental> {
     const minimum_daily = 1;
     let total = 0;
     const rental = await this.rentalsRepository.findOpenById(rental_id);
