@@ -47,14 +47,8 @@ describe('Auth User Use Case', () => {
     };
 
     await createUserUseCase.execute(user);
-    const findByEmailSpyOn = jest.spyOn(userRepositoryInMemory, 'findByEmail');
-    const compareCryptSpyOn = jest.spyOn(cryptProvider, 'compare');
 
-    expect(async () => {
-      await authUserUseCase.execute({ email: 'invalidemail@test.com', password: user.password });
-      expect(findByEmailSpyOn).toHaveBeenCalled();
-      expect(compareCryptSpyOn).toHaveBeenCalledTimes(0);
-    }).rejects.toBeInstanceOf(AppError);
+    await expect(authUserUseCase.execute({ email: 'invalidemail@test.com', password: user.password })).rejects.toEqual(new AppError('Email or password incorrect!'));
   });
 
   it('Should not authenticate an user with incorrect password', async () => {
@@ -67,13 +61,7 @@ describe('Auth User Use Case', () => {
     };
 
     await createUserUseCase.execute(user);
-    const findByEmailSpyOn = jest.spyOn(userRepositoryInMemory, 'findByEmail');
-    const compareCryptSpyOn = jest.spyOn(cryptProvider, 'compare');
 
-    expect(async () => {
-      await authUserUseCase.execute({ email: user.email, password: '1234' });
-      expect(findByEmailSpyOn).toHaveBeenCalled();
-      expect(compareCryptSpyOn).toHaveBeenCalledTimes(1);
-    }).rejects.toBeInstanceOf(AppError);
+    await expect(authUserUseCase.execute({ email: user.email, password: '1234' })).rejects.toEqual(new AppError('Email or password incorrect!'));
   });
 });

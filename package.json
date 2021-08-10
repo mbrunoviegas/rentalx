@@ -10,7 +10,7 @@
     "migration:create": "tsnd -r tsconfig-paths/register node_modules/typeorm/cli migration:create -n",
     "migration:revert": "tsnd -r tsconfig-paths/register node_modules/typeorm/cli migration:revert",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
-    "test": "SET NODE_ENV=test&&jest",
+    "test": "SET NODE_ENV=test&&jest --detectOpenHandles --runInBand",
     "seed:admin": "tsnd -r tsconfig-paths/register src/shared/infra/database/typeorm/seed/admin.ts"
   },
   "devDependencies": {

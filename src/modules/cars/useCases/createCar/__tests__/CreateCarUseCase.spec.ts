@@ -1,6 +1,6 @@
+import { AppError } from '@shared/core/errors/AppError';
 import { ICarsRepository } from '@shared/infra/database/typeorm/repositories/ICarsRepository';
 import { CarsRepositoryInMemory } from '@shared/infra/database/typeorm/repositories/inMemory/CarsRepositoryInMemory';
-import { AppError } from '@shared/core/errors/AppError';
 import { ICreateCarRequestDTO } from '../dto/ICreateCarRequestDTO';
 import { CreateCarUseCase } from '../implementations/CreateCarUseCase';
 
@@ -45,14 +45,9 @@ describe('Create Car Use Case', () => {
 
     await createCarUseCase.execute(carProps);
 
-    expect(async () => {
-      const spyOnFindByLicensePlate = jest.spyOn(carsRepository, 'findByLicensePlate');
-      const spyOnCreate = jest.spyOn(carsRepository, 'create');
-      await createCarUseCase.execute(carProps);
-
-      expect(spyOnFindByLicensePlate).toHaveBeenCalled();
-      expect(spyOnCreate).toHaveBeenCalledTimes(0);
-    }).rejects.toBeInstanceOf(AppError);
+    expect(
+      createCarUseCase.execute(carProps),
+    ).rejects.toEqual(new AppError('Car already exists!'));
   });
 
   it('Should create a car with avaliable property true', async () => {

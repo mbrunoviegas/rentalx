@@ -1,9 +1,8 @@
-import { ICarsRepository } from '@shared/infra/database/typeorm/repositories/ICarsRepository';
-import { SpecificationRepository } from '@modules/cars/repositories/implementations/SpecificationRepository';
-import { CarsRepositoryInMemory } from '@shared/infra/database/typeorm/repositories/inMemory/CarsRepositoryInMemory';
 import { SpecificationsRepositoryInMemory } from '@modules/cars/repositories/inMemory/SpecificationsRepositoryInMemory';
 import { ISpecificationRepository } from '@modules/cars/repositories/ISpecificationRepository';
 import { AppError } from '@shared/core/errors/AppError';
+import { ICarsRepository } from '@shared/infra/database/typeorm/repositories/ICarsRepository';
+import { CarsRepositoryInMemory } from '@shared/infra/database/typeorm/repositories/inMemory/CarsRepositoryInMemory';
 import { CreateCarSpecificationUseCase } from '../implementations/CreateCarSpecificationUseCase';
 
 describe('Create Car Specification Use Case', () => {
@@ -17,15 +16,13 @@ describe('Create Car Specification Use Case', () => {
     createCarSpecificationUseCase = new CreateCarSpecificationUseCase(carsRepository, specificationsRepositoy);
   });
 
-  it('Should not add specification to a nonexistent car', () => {
-    expect(async () => {
-      await createCarSpecificationUseCase.execute(
-        {
-          car_id: '12345',
-          specifications_id: ['123456'],
-        },
-      );
-    }).rejects.toBeInstanceOf(AppError);
+  it('Should not add specification to a nonexistent car', async () => {
+    await expect(createCarSpecificationUseCase.execute(
+      {
+        car_id: '12345',
+        specifications_id: ['123456'],
+      },
+    )).rejects.toEqual(new AppError('Car does not exist!'));
   });
 
   it('Should be able to create a car specification', async () => {

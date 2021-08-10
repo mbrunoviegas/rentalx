@@ -31,13 +31,7 @@ describe('Create Category Use Case', () => {
       description: 'Category Test Description',
     };
     await categoriesRepositoryInMemory.create(category);
-    const createSpyOn = jest.spyOn(categoriesRepositoryInMemory, 'create');
-    const findByNameSpyOn = jest.spyOn(categoriesRepositoryInMemory, 'findByName');
 
-    expect(async () => {
-      await createCategoryUseCase.execute(category);
-      expect(findByNameSpyOn).toHaveBeenCalled();
-      expect(createSpyOn).toHaveBeenCalledTimes(0);
-    }).rejects.toBeInstanceOf(AppError);
+    await expect(createCategoryUseCase.execute(category)).rejects.toEqual(new AppError('Category already exists'));
   });
 });
