@@ -4,6 +4,7 @@ import { inject, injectable } from 'tsyringe';
 import { ICategoryRepository } from '@modules/cars/repositories/ICategoryRepository';
 import { IParsedCategory } from '@modules/cars/useCases/importCategory/interfaces/IParsedCategory';
 import { AppError } from '@shared/core/errors/AppError';
+import { IUseCase } from '@shared/core/IUseCase';
 
 @injectable()
 class ImportCategoryUseCase implements IUseCase<Express.Multer.File, void> {

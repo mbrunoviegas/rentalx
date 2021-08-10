@@ -1,5 +1,5 @@
-import { UserRespositoryInMemory } from '@modules/accounts/repositories/inMemory/UsersRepositoryInMemory';
-import { AuthUserUseCase } from '@modules/accounts/useCases/authUser/implementations/AuthUserUseCase';
+import { UserRespositoryInMemory } from '@shared/infra/database/typeorm/repositories/inMemory/UsersRepositoryInMemory';
+import { AuthUserUseCase } from '@modules/auth/useCases/authUser/implementations/AuthUserUseCase';
 import { CreateUserUseCase } from '@modules/accounts/useCases/createUser/implementations/CreateUserUseCase';
 import { AppError } from '@shared/core/errors/AppError';
 import { CryptProvider } from '@shared/core/providers/implementations/CryptProvider';

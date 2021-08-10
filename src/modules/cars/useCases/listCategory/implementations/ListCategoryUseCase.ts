@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import { ICategoryRepository } from '@modules/cars/repositories/ICategoryRepository';
+import { IUseCase } from '@shared/core/IUseCase';
 import { Category } from '@shared/infra/database/typeorm/entities/Category';
 
 @injectable()

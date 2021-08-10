@@ -30,6 +30,16 @@ export class RefreshTokenMigration1628554015616 implements MigrationInterface {
           default: 'now()',
         },
       ],
+      foreignKeys: [
+        {
+          name: 'FKTokenUser',
+          columnNames: ['user_id'],
+          referencedColumnNames: ['id'],
+          referencedTableName: 'users',
+          onDelete: 'CASCADE',
+          onUpdate: 'CASCADE',
+        },
+      ],
     }));
   }
 

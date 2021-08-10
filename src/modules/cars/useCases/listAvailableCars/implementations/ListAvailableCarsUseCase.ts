@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe';
-import { ICarsRepository } from '@shared/infra/database/typeorm/repositories/ICarsRepository';
+import { IUseCase } from '@shared/core/IUseCase';
 import { Car } from '@shared/infra/database/typeorm/entities/Car';
+import { ICarsRepository } from '@shared/infra/database/typeorm/repositories/ICarsRepository';
 import { IListAvailableCarsRequestDTO } from '../dto/IListAvailableCarsRequestDTO';
 
 @injectable()

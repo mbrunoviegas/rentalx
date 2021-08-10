@@ -2,7 +2,7 @@ import { injectable } from 'tsyringe';
 import { getRepository, Repository } from 'typeorm';
 import { ICreateRefreshToken } from '@modules/accounts/dto/ICreateRefreshToken';
 import { UsersTokens } from '@shared/infra/database/typeorm/entities/UsersTokens';
-import { IUsersTokensRepository } from '../IUseusTokensRepository';
+import { IUsersTokensRepository } from '../IUsersTokensRepository';
 
 @injectable()
 class UsersTokensRepository implements IUsersTokensRepository {
@@ -23,6 +23,19 @@ class UsersTokensRepository implements IUsersTokensRepository {
     });
 
     return this.repository.save(userToken);
+  }
+
+  async findTokenByUserIdAndToken(user_id: string, token: string): Promise<UsersTokens> {
+    return this.repository.findOne({
+      where: {
+        user_id,
+        refresh_token: token,
+      },
+    });
+  }
+
+  async deleteById(id: string): Promise<void> {
+    await this.repository.delete(id);
   }
 }
 

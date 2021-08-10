@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
+import auth from '@shared/config/auth';
 import { AppError } from '@shared/core/errors/AppError';
-import { AuthProvider } from '@shared/core/providers/implementations/AuthProvider';
+import { JwtProvider } from '@shared/core/providers/implementations/JwtProvider';
 
 interface IPayload {
   sub: string;
@@ -16,7 +17,7 @@ const ensureAuthenticatedMiddlware = (request: Request, response: Response, next
   const [, token] = authHeader.split(' ');
 
   try {
-    const { sub: userId } = AuthProvider.verify(token) as IPayload;
+    const { sub: userId } = JwtProvider.verify(token, auth.resfreshTokenSecret) as IPayload;
     request.user = { id: userId };
     next();
   } catch (e) {

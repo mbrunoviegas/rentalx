@@ -1,8 +1,8 @@
 import { container } from 'tsyringe';
-import { UserRepository } from '@modules/accounts/repositories/implementations/UserRepository';
-import { UsersTokensRepository } from '@modules/accounts/repositories/implementations/UsersTokensRepository';
-import { IUserRepository } from '@modules/accounts/repositories/IUserRepository';
-import { IUsersTokensRepository } from '@modules/accounts/repositories/IUseusTokensRepository';
+import { UserRepository } from '@shared/infra/database/typeorm/repositories/implementations/UserRepository';
+import { UsersTokensRepository } from '@modules/auth/repositories/implementations/UsersTokensRepository';
+import { IUserRepository } from '@shared/infra/database/typeorm/repositories/IUserRepository';
+import { IUsersTokensRepository } from '@modules/auth/repositories/IUsersTokensRepository';
 import { ICarsImageRepository } from '@modules/cars/repositories/ICarsImageRepository';
 import { ICategoryRepository } from '@modules/cars/repositories/ICategoryRepository';
 import { CarsImageRepository } from '@modules/cars/repositories/implementations/CarsImageRepository';

@@ -1,7 +1,8 @@
 import { inject, injectable } from 'tsyringe';
-import { ICarsRepository } from '@shared/infra/database/typeorm/repositories/ICarsRepository';
 import { AppError } from '@shared/core/errors/AppError';
+import { IUseCase } from '@shared/core/IUseCase';
 import { Car } from '@shared/infra/database/typeorm/entities/Car';
+import { ICarsRepository } from '@shared/infra/database/typeorm/repositories/ICarsRepository';
 import { ICreateCarRequestDTO } from '../dto/ICreateCarRequestDTO';
 
 @injectable()

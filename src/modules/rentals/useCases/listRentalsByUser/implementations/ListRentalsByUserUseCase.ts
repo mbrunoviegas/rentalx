@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import { IRentalsRepository } from '@modules/rentals/repositories/IRentalsRepository';
+import { IUseCase } from '@shared/core/IUseCase';
 import { Rental } from '@shared/infra/database/typeorm/entities/Rental';
 
 @injectable()

@@ -2,6 +2,7 @@ import { inject, injectable } from 'tsyringe';
 import { ICategoryRepository } from '@modules/cars/repositories/ICategoryRepository';
 import { ICreateCategoryRequestDTO } from '@modules/cars/useCases/createCategory/dto/ICreateCategoryRequestDTO';
 import { AppError } from '@shared/core/errors/AppError';
+import { IUseCase } from '@shared/core/IUseCase';
 
 @injectable()
 class CreateCategoryUseCase implements IUseCase<ICreateCategoryRequestDTO, void> {

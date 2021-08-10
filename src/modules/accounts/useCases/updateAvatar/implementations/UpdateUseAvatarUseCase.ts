@@ -1,9 +1,10 @@
 import { inject, injectable } from 'tsyringe';
 import {
   IUserRepository,
-} from '@modules/accounts/repositories/IUserRepository';
+} from '@shared/infra/database/typeorm/repositories/IUserRepository';
 import { IRequestUpdateAvatar } from '@modules/accounts/useCases/updateAvatar/dto/IRequestUpdateAvatar';
 import { AppError } from '@shared/core/errors/AppError';
+import { IUseCase } from '@shared/core/IUseCase';
 import { User } from '@shared/infra/database/typeorm/entities/User';
 import { FileUtils } from '@shared/utils/FileUtils';
 

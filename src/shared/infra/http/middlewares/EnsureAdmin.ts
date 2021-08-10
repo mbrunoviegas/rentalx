@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { UserRepository } from '@modules/accounts/repositories/implementations/UserRepository';
+import { UserRepository } from '@shared/infra/database/typeorm/repositories/implementations/UserRepository';
 import { AppError } from '@shared/core/errors/AppError';
 
 const ensureAdminMiddleware = async (request: Request, response: Response, next: NextFunction) => {

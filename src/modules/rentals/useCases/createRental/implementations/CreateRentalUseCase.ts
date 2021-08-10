@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import { IRentalsRepository } from '@modules/rentals/repositories/IRentalsRepository';
 import { AppError } from '@shared/core/errors/AppError';
+import { IUseCase } from '@shared/core/IUseCase';
 import { IDateProvider } from '@shared/core/providers/interfaces/IDateProvider';
 import { Rental } from '@shared/infra/database/typeorm/entities/Rental';
 import { ICarsRepository } from '@shared/infra/database/typeorm/repositories/ICarsRepository';

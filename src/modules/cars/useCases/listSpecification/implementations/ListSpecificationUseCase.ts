@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import { ISpecificationRepository } from '@modules/cars/repositories/ISpecificationRepository';
+import { IUseCase } from '@shared/core/IUseCase';
 import { Specification } from '@shared/infra/database/typeorm/entities/Specification';
 
 @injectable()
