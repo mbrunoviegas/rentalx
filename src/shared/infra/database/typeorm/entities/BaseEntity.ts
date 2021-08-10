@@ -1,10 +1,10 @@
 import { CreateDateColumn, PrimaryGeneratedColumn } from 'typeorm';
 
-class BaseEntitiy {
+class BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
   @CreateDateColumn()
   created_at: Date;
 }
 
-export { BaseEntitiy };
+export { BaseEntity };

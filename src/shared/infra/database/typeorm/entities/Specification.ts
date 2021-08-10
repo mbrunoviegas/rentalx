@@ -1,8 +1,8 @@
 import { Entity, Column } from 'typeorm';
-import { BaseEntitiy } from './BaseEntity';
+import { BaseEntity } from './BaseEntity';
 
 @Entity('specifications')
-class Specification extends BaseEntitiy {
+class Specification extends BaseEntity {
   @Column()
   name: string;
   @Column()

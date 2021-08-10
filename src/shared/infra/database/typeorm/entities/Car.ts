@@ -1,12 +1,12 @@
 import {
   Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne,
 } from 'typeorm';
-import { BaseEntitiy } from './BaseEntity';
+import { BaseEntity } from './BaseEntity';
 import { Category } from './Category';
 import { Specification } from './Specification';
 
 @Entity('cars')
-export class Car extends BaseEntitiy {
+export class Car extends BaseEntity {
   @Column()
   name: string;
 
