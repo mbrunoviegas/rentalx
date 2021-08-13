@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import { IUserRepository } from '@shared/infra/database/typeorm/repositories/IUserRepository';
-import { IUsersTokensRepository } from '@modules/auth/repositories/IUsersTokensRepository';
+import { IUsersTokensRepository } from '@shared/infra/database/typeorm/repositories/IUsersTokensRepository';
 import { IRequestAuth } from '@modules/auth/useCases/authUser/dto/IRequestAuth';
 import { IResponseAuth } from '@modules/auth/useCases/authUser/dto/IResponseAuth';
 import auth from '@shared/config/auth';

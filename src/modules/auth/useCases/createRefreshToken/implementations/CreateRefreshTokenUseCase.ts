@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import { IUsersTokensRepository } from '@modules/auth/repositories/IUsersTokensRepository';
+import { IUsersTokensRepository } from '@shared/infra/database/typeorm/repositories/IUsersTokensRepository';
 import auth from '@shared/config/auth';
 import { AppError } from '@shared/core/errors/AppError';
 import { IUseCase } from '@shared/core/IUseCase';

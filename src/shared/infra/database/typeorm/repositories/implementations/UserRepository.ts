@@ -1,10 +1,10 @@
 import { getRepository, Repository } from 'typeorm';
-import { IUserRepository } from '@shared/infra/database/typeorm/repositories/IUserRepository';
 import { ICreateUserDTO } from '@modules/accounts/useCases/createUser/dto/ICreateUserDTO';
 import { User } from '@shared/infra/database/typeorm/entities/User';
+import { IUserRepository } from '@shared/infra/database/typeorm/repositories/IUserRepository';
 
 class UserRepository implements IUserRepository {
-  private repository: Repository<User>
+  private repository: Repository<User>;
 
   constructor() {
     this.repository = getRepository(User);

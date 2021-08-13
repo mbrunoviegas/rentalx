@@ -3,6 +3,7 @@ import multer from 'multer';
 import {
   CreateUserController,
 } from '@modules/accounts/useCases/createUser/CreateUserController';
+import { ResetPasswordController } from '@modules/accounts/useCases/resetPassword/ResetPasswordController';
 import { SendForgottenPasswordEmailController } from '@modules/accounts/useCases/sendForgottenPasswordEmail/SendForgottenPasswordEmailController';
 import {
   UpdateUseAvatarController,
@@ -18,6 +19,7 @@ const uploadAvatar = multer(uploadConfig.upload('./tmp/avatar'));
 const createUserController = new CreateUserController();
 const updateUserAvatarController = new UpdateUseAvatarController();
 const sendForgottenPasswordEmailController = new SendForgottenPasswordEmailController();
+const resetPasswordController = new ResetPasswordController();
 
 accountRoutes.post('/', createUserController.handle);
 accountRoutes.patch(
@@ -27,5 +29,6 @@ accountRoutes.patch(
   updateUserAvatarController.handle,
 );
 accountRoutes.post('/password/forgot', sendForgottenPasswordEmailController.handle);
+accountRoutes.post('/password/reset', resetPasswordController.handle);
 
 export { accountRoutes };

@@ -1,6 +1,7 @@
+import { resolve } from 'path';
 import { inject, injectable } from 'tsyringe';
 import { v4 as uuid } from 'uuid';
-import { IUsersTokensRepository } from '@modules/auth/repositories/IUsersTokensRepository';
+import { IUsersTokensRepository } from '@shared/infra/database/typeorm/repositories/IUsersTokensRepository';
 import { AppError } from '@shared/core/errors/AppError';
 import { IUseCase } from '@shared/core/IUseCase';
 import { IDateProvider } from '@shared/core/providers/interfaces/IDateProvider';
@@ -23,6 +24,16 @@ class SendForgottenPasswordEmailUseCase implements IUseCase<string, void> {
   async execute(email: string): Promise<void> {
     const user = await this.usersRepository.findByEmail(email);
 
+    const templatePath = resolve(
+      __dirname,
+      '..',
+      '..',
+      '..',
+      'views',
+      'email',
+      'forgottenPassword.hbs',
+    );
+
     if (!user) {
       throw new AppError('User does not exist');
     }
@@ -37,10 +48,16 @@ class SendForgottenPasswordEmailUseCase implements IUseCase<string, void> {
       expires_date: expiresDate,
     });
 
+    const variables = {
+      name: user.name,
+      link: `${process.env.FORFOT_PASSWORD_LINK_DEV}${resetPasswordToken}`,
+    };
+
     await this.mailProvider.sendMail(
       email,
       'Recuperação de Senha',
-      `O link para o reset é ${resetPasswordToken}`,
+      variables,
+      templatePath,
     );
   }
 }

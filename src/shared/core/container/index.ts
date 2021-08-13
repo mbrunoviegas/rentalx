@@ -1,6 +1,6 @@
 import { container } from 'tsyringe';
-import { UsersTokensRepository } from '@modules/auth/repositories/implementations/UsersTokensRepository';
-import { IUsersTokensRepository } from '@modules/auth/repositories/IUsersTokensRepository';
+import { UsersTokensRepository } from '@shared/infra/database/typeorm/repositories/implementations/UsersTokensRepository';
+import { IUsersTokensRepository } from '@shared/infra/database/typeorm/repositories/IUsersTokensRepository';
 import { ICarsImageRepository } from '@modules/cars/repositories/ICarsImageRepository';
 import { ICategoryRepository } from '@modules/cars/repositories/ICategoryRepository';
 import { CarsImageRepository } from '@modules/cars/repositories/implementations/CarsImageRepository';
