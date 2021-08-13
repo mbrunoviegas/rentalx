@@ -10,7 +10,7 @@ import { specificationRoutes } from './specification.routes';
 const routes = Router();
 routes.use('/categories', categoryRoutes);
 routes.use('/specifications', ensureAuthenticatedMiddlware, specificationRoutes);
-routes.use('/users', accountRoutes);
+routes.use('/accounts', accountRoutes);
 routes.use('/auth', authRoutes);
 routes.use('/cars', carRoutes);
 routes.use('/rentals', rentalsRoutes);

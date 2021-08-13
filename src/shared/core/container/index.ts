@@ -1,7 +1,5 @@
 import { container } from 'tsyringe';
-import { UserRepository } from '@shared/infra/database/typeorm/repositories/implementations/UserRepository';
 import { UsersTokensRepository } from '@modules/auth/repositories/implementations/UsersTokensRepository';
-import { IUserRepository } from '@shared/infra/database/typeorm/repositories/IUserRepository';
 import { IUsersTokensRepository } from '@modules/auth/repositories/IUsersTokensRepository';
 import { ICarsImageRepository } from '@modules/cars/repositories/ICarsImageRepository';
 import { ICategoryRepository } from '@modules/cars/repositories/ICategoryRepository';
@@ -15,8 +13,12 @@ import { CryptProvider } from '@shared/core/providers/implementations/CryptProvi
 import { ICrypt } from '@shared/core/providers/interfaces/ICrypt';
 import { ICarsRepository } from '@shared/infra/database/typeorm/repositories/ICarsRepository';
 import { CarsRepository } from '@shared/infra/database/typeorm/repositories/implementations/CarsRepository';
+import { UserRepository } from '@shared/infra/database/typeorm/repositories/implementations/UserRepository';
+import { IUserRepository } from '@shared/infra/database/typeorm/repositories/IUserRepository';
 import { DateProvider } from '../providers/implementations/DateProvider';
+import { EtherealMailProvider } from '../providers/implementations/EtherealMailProvider';
 import { IDateProvider } from '../providers/interfaces/IDateProvider';
+import { IMailProvider } from '../providers/interfaces/IMailProvider';
 
 container.registerSingleton<ICategoryRepository>(
   'CategoryRepository',
@@ -61,4 +63,9 @@ container.registerSingleton<IDateProvider>(
 container.registerSingleton<IUsersTokensRepository>(
   'UsersTokensRepository',
   UsersTokensRepository,
+);
+
+container.registerInstance<IMailProvider>(
+  'EtherealMailProvider',
+  new EtherealMailProvider(),
 );
