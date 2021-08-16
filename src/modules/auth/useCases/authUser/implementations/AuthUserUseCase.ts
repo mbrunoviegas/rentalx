@@ -1,6 +1,4 @@
 import { inject, injectable } from 'tsyringe';
-import { IUserRepository } from '@shared/infra/database/typeorm/repositories/IUserRepository';
-import { IUsersTokensRepository } from '@shared/infra/database/typeorm/repositories/IUsersTokensRepository';
 import { IRequestAuth } from '@modules/auth/useCases/authUser/dto/IRequestAuth';
 import { IResponseAuth } from '@modules/auth/useCases/authUser/dto/IResponseAuth';
 import auth from '@shared/config/auth';
@@ -10,6 +8,8 @@ import { JwtProvider } from '@shared/core/providers/implementations/JwtProvider'
 import { ICrypt } from '@shared/core/providers/interfaces/ICrypt';
 import { IDateProvider } from '@shared/core/providers/interfaces/IDateProvider';
 import { User } from '@shared/infra/database/typeorm/entities/User';
+import { IUserRepository } from '@shared/infra/database/typeorm/repositories/IUserRepository';
+import { IUsersTokensRepository } from '@shared/infra/database/typeorm/repositories/IUsersTokensRepository';
 
 @injectable()
 class AuthUserUseCase implements IUseCase<IRequestAuth, IResponseAuth> {

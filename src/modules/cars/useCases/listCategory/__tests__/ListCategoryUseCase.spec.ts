@@ -33,11 +33,11 @@ describe('List Category Use Case', () => {
         password: 'admin',
       });
 
-    const { access_token } = responseToken.body;
+    const { refresh_token } = responseToken.body;
     await request(app)
       .post('/categories')
       .set({
-        Authorization: `Bearer ${access_token}`,
+        Authorization: `Bearer ${refresh_token}`,
       })
       .send({
         name: 'Test',
