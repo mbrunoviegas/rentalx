@@ -4,7 +4,7 @@ import { UsersTokens } from '../../entities/UsersTokens';
 import { IUsersTokensRepository } from '../IUsersTokensRepository';
 
 class UsersTokensRepositoryInMemory implements IUsersTokensRepository {
-  private usersTokens: UsersTokens[];
+  private usersTokens: UsersTokens[] = [];
 
   async create(props: ICreateRefreshToken): Promise<UsersTokens> {
     const userToken = new UsersTokens();
