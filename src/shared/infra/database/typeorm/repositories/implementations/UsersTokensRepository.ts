@@ -1,10 +1,8 @@
-import { injectable } from 'tsyringe';
 import { getRepository, Repository } from 'typeorm';
 import { ICreateRefreshToken } from '@modules/accounts/dto/ICreateRefreshToken';
 import { UsersTokens } from '@shared/infra/database/typeorm/entities/UsersTokens';
 import { IUsersTokensRepository } from '../IUsersTokensRepository';
 
-@injectable()
 class UsersTokensRepository implements IUsersTokensRepository {
   private repository: Repository<UsersTokens>;
 

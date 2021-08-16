@@ -1,14 +1,13 @@
-import express, {
-  Express, Router,
-} from 'express';
+import '@shared/core/container';
+import express from 'express';
 import 'express-async-errors';
 import path from 'path';
+import 'reflect-metadata';
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
 import createConnection from '@shared/infra/database';
 import routes from '@shared/infra/http/routes';
 import { ExceptionValidation } from '../../core/errors/ExceptionValidation';
-import '@shared/core/container';
 
 createConnection();
 const app = express();

@@ -1,6 +1,9 @@
 #vscode
 .vscode
 
+#covarage
+covarage
+
 # Logs
 logs
 *.log

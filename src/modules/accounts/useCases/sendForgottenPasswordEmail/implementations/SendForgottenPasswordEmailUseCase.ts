@@ -1,12 +1,12 @@
 import { resolve } from 'path';
 import { inject, injectable } from 'tsyringe';
 import { v4 as uuid } from 'uuid';
-import { IUsersTokensRepository } from '@shared/infra/database/typeorm/repositories/IUsersTokensRepository';
 import { AppError } from '@shared/core/errors/AppError';
 import { IUseCase } from '@shared/core/IUseCase';
 import { IDateProvider } from '@shared/core/providers/interfaces/IDateProvider';
 import { IMailProvider } from '@shared/core/providers/interfaces/IMailProvider';
 import { IUserRepository } from '@shared/infra/database/typeorm/repositories/IUserRepository';
+import { IUsersTokensRepository } from '@shared/infra/database/typeorm/repositories/IUsersTokensRepository';
 
 @injectable()
 class SendForgottenPasswordEmailUseCase implements IUseCase<string, void> {
@@ -14,7 +14,7 @@ class SendForgottenPasswordEmailUseCase implements IUseCase<string, void> {
     @inject('UserRepository')
     private usersRepository: IUserRepository,
     @inject('UsersTokensRepository')
-    private usersTokens: IUsersTokensRepository,
+    private usersTokensRepository: IUsersTokensRepository,
     @inject('DateProvider')
     private dateProvider: IDateProvider,
     @inject('EtherealMailProvider')
@@ -23,6 +23,10 @@ class SendForgottenPasswordEmailUseCase implements IUseCase<string, void> {
 
   async execute(email: string): Promise<void> {
     const user = await this.usersRepository.findByEmail(email);
+
+    if (!user) {
+      throw new AppError('User does not exist');
+    }
 
     const templatePath = resolve(
       __dirname,
@@ -34,15 +38,11 @@ class SendForgottenPasswordEmailUseCase implements IUseCase<string, void> {
       'forgottenPassword.hbs',
     );
 
-    if (!user) {
-      throw new AppError('User does not exist');
-    }
-
     const EXPIRES_HOURS_RESET_TOKEN = 1;
     const resetPasswordToken = uuid();
     const expiresDate = this.dateProvider.addHours(EXPIRES_HOURS_RESET_TOKEN);
 
-    await this.usersTokens.create({
+    await this.usersTokensRepository.create({
       refresh_token: resetPasswordToken,
       user_id: user.id,
       expires_date: expiresDate,

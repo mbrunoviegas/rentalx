@@ -1,5 +1,3 @@
-import { CreateUserUseCase } from '@modules/accounts/useCases/createUser/implementations/CreateUserUseCase';
-import { AuthUserUseCase } from '@modules/auth/useCases/authUser/implementations/AuthUserUseCase';
 import { AppError } from '@shared/core/errors/AppError';
 import { CryptProvider } from '@shared/core/providers/implementations/CryptProvider';
 import { DateProvider } from '@shared/core/providers/implementations/DateProvider';
@@ -7,6 +5,8 @@ import { ICrypt } from '@shared/core/providers/interfaces/ICrypt';
 import { IDateProvider } from '@shared/core/providers/interfaces/IDateProvider';
 import { UserRespositoryInMemory } from '@shared/infra/database/typeorm/repositories/inMemory/UsersRepositoryInMemory';
 import { UsersTokensRepositoryInMemory } from '@shared/infra/database/typeorm/repositories/inMemory/UsersTokensRepositoryInMemory';
+import { CreateUserUseCase } from '../../../../accounts/useCases/createUser/implementations/CreateUserUseCase';
+import { AuthUserUseCase } from '../implementations/AuthUserUseCase';
 
 describe('Auth User Use Case', () => {
   let authUserUseCase: AuthUserUseCase;
