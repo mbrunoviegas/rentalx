@@ -9,7 +9,7 @@ import { ensureAdminMiddleware } from '../middlewares/EnsureAdmin';
 import { ensureAuthenticatedMiddlware } from '../middlewares/EnsureAuthenticatedMiddleware';
 
 const carRoutes = Router();
-// const uploadImages = multer(uploadConfig.upload('./tmp/cars'));
+const uploadImages = multer(uploadConfig);
 
 const createCarController = new CreateCarController();
 const listAvailableCarsController = new ListAvailableCarsController();
@@ -26,7 +26,7 @@ carRoutes.post('/specifications/:id',
 carRoutes.post('/images/:id',
   ensureAuthenticatedMiddlware,
   ensureAdminMiddleware,
-  // uploadImages.array('images'),
+  uploadImages.array('images'),
   carsImageController.handle);
 
 export { carRoutes };

@@ -22,6 +22,12 @@ class CarsImageRepository implements ICarsImageRepository {
       },
     });
   }
+
+  async deleteByCarId(car_id: string): Promise<void> {
+    await this.repository.delete({
+      car_id,
+    });
+  }
 }
 
 export { CarsImageRepository };

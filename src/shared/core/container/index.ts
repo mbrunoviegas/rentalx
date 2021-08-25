@@ -20,6 +20,7 @@ import { IMailProvider } from '../providers/IMailProvider';
 import { DateProvider } from '../providers/implementations/DateProvider';
 import { EtherealMailProvider } from '../providers/implementations/EtherealMailProvider';
 import { LocalStorageProvider } from '../providers/implementations/LocalStorageProvider';
+import { S3AwsProvider } from '../providers/implementations/S3AwsProvider';
 import { IStorageProvider } from '../providers/IStorageProvider';
 
 container.registerSingleton<ICategoryRepository>(
@@ -72,7 +73,14 @@ container.registerInstance<IMailProvider>(
   container.resolve(EtherealMailProvider),
 );
 
+const diskStorage = {
+  local: LocalStorageProvider,
+  s3: S3AwsProvider,
+};
+
+const disk = process.env.disk as string;
+
 container.registerSingleton<IStorageProvider>(
   'StorageProvider',
-  LocalStorageProvider,
+  diskStorage[disk],
 );

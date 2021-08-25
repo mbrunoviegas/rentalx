@@ -2,23 +2,27 @@ import { inject, injectable } from 'tsyringe';
 import { ICarsImageRepository } from '@modules/cars/repositories/ICarsImageRepository';
 import { AppError } from '@shared/core/errors/AppError';
 import { IUseCase } from '@shared/core/IUseCase';
+import { IStorageProvider } from '@shared/core/providers/IStorageProvider';
 import { ICarsRepository } from '@shared/infra/database/typeorm/repositories/ICarsRepository';
-import { FileUtils } from '@shared/utils/FileUtils';
 import { ICarsImagesRequestDTO } from '../dto/IUploadCarsImagesRequestDTO';
 
 @injectable()
 class UploadCarsImagesUseCase implements IUseCase<ICarsImagesRequestDTO, void> {
   constructor(
     @inject('CarsRepository')
-      private carsRepository: ICarsRepository,
+    private carsRepository: ICarsRepository,
     @inject('CarsImageRepository')
     private carsImageRepository: ICarsImageRepository,
+    @inject('StorageProvider')
+    private storageProvider: IStorageProvider,
   ) { }
 
+  private CARS_FOLDER = 'cars';
+
   private async deleteCarImages(images_name: string[]): Promise<void> {
-    images_name.map(async (image_name) => {
-      await FileUtils.deleteFile(`./tmp/cars/${image_name}`);
-    });
+    await Promise.all(images_name.map(async (image_name) => {
+      await this.storageProvider.delete(image_name, this.CARS_FOLDER);
+    }));
   }
 
   async execute({ car_id, images_name }: ICarsImagesRequestDTO): Promise<void> {
@@ -34,10 +38,13 @@ class UploadCarsImagesUseCase implements IUseCase<ICarsImagesRequestDTO, void> {
       const existentImagesNames = existentImages.map((existentImage) =>
         existentImage.image_name);
       await this.deleteCarImages(existentImagesNames);
+      await this.carsImageRepository.deleteByCarId(car_id);
     }
 
-    images_name.map(async (image_name) =>
-      this.carsImageRepository.create(car_id, image_name));
+    await Promise.all(images_name.map(async (image_name) => {
+      await this.carsImageRepository.create(car_id, image_name);
+      await this.storageProvider.save(image_name, this.CARS_FOLDER);
+    }));
   }
 }
 
