@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import { AppError } from '@shared/core/errors/AppError';
 import { IUseCase } from '@shared/core/IUseCase';
-import { ICrypt } from '@shared/core/providers/interfaces/ICrypt';
+import { ICrypt } from '@shared/core/providers/ICrypt';
 import { IUserRepository } from '@shared/infra/database/typeorm/repositories/IUserRepository';
 import { IUsersTokensRepository } from '@shared/infra/database/typeorm/repositories/IUsersTokensRepository';
 import { IRequestResetPassword } from '../dto/IRequestResetPassword';

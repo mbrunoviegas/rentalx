@@ -1,8 +1,8 @@
 import { AppError } from '@shared/core/errors/AppError';
 import { DateProvider } from '@shared/core/providers/implementations/DateProvider';
 import { MailProviderInMemory } from '@shared/core/providers/inMemory/MailProviderInMemory';
-import { IDateProvider } from '@shared/core/providers/interfaces/IDateProvider';
-import { IMailProvider } from '@shared/core/providers/interfaces/IMailProvider';
+import { IDateProvider } from '@shared/core/providers/IDateProvider';
+import { IMailProvider } from '@shared/core/providers/IMailProvider';
 import { UserRespositoryInMemory } from '@shared/infra/database/typeorm/repositories/inMemory/UsersRepositoryInMemory';
 import { UsersTokensRepositoryInMemory } from '@shared/infra/database/typeorm/repositories/inMemory/UsersTokensRepositoryInMemory';
 import { IUserRepository } from '@shared/infra/database/typeorm/repositories/IUserRepository';

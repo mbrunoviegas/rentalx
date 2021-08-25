@@ -7,18 +7,20 @@ import { SpecificationRepository } from '@modules/cars/repositories/implementati
 import { ISpecificationRepository } from '@modules/cars/repositories/ISpecificationRepository';
 import { RentalsRepository } from '@modules/rentals/repositories/implementations/RentalsRepository';
 import { IRentalsRepository } from '@modules/rentals/repositories/IRentalsRepository';
+import { ICrypt } from '@shared/core/providers/ICrypt';
 import { CryptProvider } from '@shared/core/providers/implementations/CryptProvider';
-import { ICrypt } from '@shared/core/providers/interfaces/ICrypt';
 import { ICarsRepository } from '@shared/infra/database/typeorm/repositories/ICarsRepository';
 import { CarsRepository } from '@shared/infra/database/typeorm/repositories/implementations/CarsRepository';
 import { UserRepository } from '@shared/infra/database/typeorm/repositories/implementations/UserRepository';
 import { UsersTokensRepository } from '@shared/infra/database/typeorm/repositories/implementations/UsersTokensRepository';
 import { IUserRepository } from '@shared/infra/database/typeorm/repositories/IUserRepository';
 import { IUsersTokensRepository } from '@shared/infra/database/typeorm/repositories/IUsersTokensRepository';
+import { IDateProvider } from '../providers/IDateProvider';
+import { IMailProvider } from '../providers/IMailProvider';
 import { DateProvider } from '../providers/implementations/DateProvider';
 import { EtherealMailProvider } from '../providers/implementations/EtherealMailProvider';
-import { IDateProvider } from '../providers/interfaces/IDateProvider';
-import { IMailProvider } from '../providers/interfaces/IMailProvider';
+import { LocalStorageProvider } from '../providers/implementations/LocalStorageProvider';
+import { IStorageProvider } from '../providers/IStorageProvider';
 
 container.registerSingleton<ICategoryRepository>(
   'CategoryRepository',
@@ -68,4 +70,9 @@ container.registerSingleton<IUsersTokensRepository>(
 container.registerInstance<IMailProvider>(
   'EtherealMailProvider',
   container.resolve(EtherealMailProvider),
+);
+
+container.registerSingleton<IStorageProvider>(
+  'StorageProvider',
+  LocalStorageProvider,
 );

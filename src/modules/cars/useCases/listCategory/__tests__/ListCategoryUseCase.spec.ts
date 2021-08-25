@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { Connection } from 'typeorm';
 import { CryptProvider } from '@shared/core/providers/implementations/CryptProvider';
-import { ICrypt } from '@shared/core/providers/interfaces/ICrypt';
+import { ICrypt } from '@shared/core/providers/ICrypt';
 import createConnection from '@shared/infra/database/index';
 import { app } from '@shared/infra/http/app';
 

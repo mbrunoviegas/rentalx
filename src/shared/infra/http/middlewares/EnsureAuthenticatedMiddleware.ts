@@ -17,7 +17,7 @@ const ensureAuthenticatedMiddlware = (request: Request, response: Response, next
   const [, token] = authHeader.split(' ');
 
   try {
-    const { sub: userId } = JwtProvider.verify(token, auth.resfreshTokenSecret) as IPayload;
+    const { sub: userId } = JwtProvider.verify(token, auth.accessTokenSecret) as IPayload;
     request.user = { id: userId };
     next();
   } catch (e) {

@@ -1,8 +1,8 @@
 import { AppError } from '@shared/core/errors/AppError';
 import { CryptProvider } from '@shared/core/providers/implementations/CryptProvider';
 import { DateProvider } from '@shared/core/providers/implementations/DateProvider';
-import { ICrypt } from '@shared/core/providers/interfaces/ICrypt';
-import { IDateProvider } from '@shared/core/providers/interfaces/IDateProvider';
+import { ICrypt } from '@shared/core/providers/ICrypt';
+import { IDateProvider } from '@shared/core/providers/IDateProvider';
 import { UserRespositoryInMemory } from '@shared/infra/database/typeorm/repositories/inMemory/UsersRepositoryInMemory';
 import { UsersTokensRepositoryInMemory } from '@shared/infra/database/typeorm/repositories/inMemory/UsersTokensRepositoryInMemory';
 import { CreateUserUseCase } from '../../../../accounts/useCases/createUser/implementations/CreateUserUseCase';

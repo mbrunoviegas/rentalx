@@ -14,7 +14,7 @@ import {
 } from '@shared/infra/http/middlewares/EnsureAuthenticatedMiddleware';
 
 const accountRoutes = Router();
-const uploadAvatar = multer(uploadConfig.upload('./tmp/avatar'));
+const uploadAvatar = multer(uploadConfig);
 
 const createUserController = new CreateUserController();
 const updateUserAvatarController = new UpdateUseAvatarController();

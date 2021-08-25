@@ -4,9 +4,9 @@ import { IResponseAuth } from '@modules/auth/useCases/authUser/dto/IResponseAuth
 import auth from '@shared/config/auth';
 import { AppError } from '@shared/core/errors/AppError';
 import { IUseCase } from '@shared/core/IUseCase';
+import { ICrypt } from '@shared/core/providers/ICrypt';
+import { IDateProvider } from '@shared/core/providers/IDateProvider';
 import { JwtProvider } from '@shared/core/providers/implementations/JwtProvider';
-import { ICrypt } from '@shared/core/providers/interfaces/ICrypt';
-import { IDateProvider } from '@shared/core/providers/interfaces/IDateProvider';
 import { User } from '@shared/infra/database/typeorm/entities/User';
 import { IUserRepository } from '@shared/infra/database/typeorm/repositories/IUserRepository';
 import { IUsersTokensRepository } from '@shared/infra/database/typeorm/repositories/IUsersTokensRepository';

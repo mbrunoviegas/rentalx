@@ -4,7 +4,7 @@ import auth from '@shared/config/auth';
 import { AppError } from '@shared/core/errors/AppError';
 import { IUseCase } from '@shared/core/IUseCase';
 import { JwtProvider } from '@shared/core/providers/implementations/JwtProvider';
-import { IDateProvider } from '@shared/core/providers/interfaces/IDateProvider';
+import { IDateProvider } from '@shared/core/providers/IDateProvider';
 
 interface IPayload {
   sub: string;

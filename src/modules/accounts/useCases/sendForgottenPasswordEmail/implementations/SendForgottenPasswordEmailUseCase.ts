@@ -3,8 +3,8 @@ import { inject, injectable } from 'tsyringe';
 import { v4 as uuid } from 'uuid';
 import { AppError } from '@shared/core/errors/AppError';
 import { IUseCase } from '@shared/core/IUseCase';
-import { IDateProvider } from '@shared/core/providers/interfaces/IDateProvider';
-import { IMailProvider } from '@shared/core/providers/interfaces/IMailProvider';
+import { IDateProvider } from '@shared/core/providers/IDateProvider';
+import { IMailProvider } from '@shared/core/providers/IMailProvider';
 import { IUserRepository } from '@shared/infra/database/typeorm/repositories/IUserRepository';
 import { IUsersTokensRepository } from '@shared/infra/database/typeorm/repositories/IUsersTokensRepository';
 

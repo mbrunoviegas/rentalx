@@ -3,7 +3,7 @@ import handlebars from 'handlebars';
 import nodemailer, { Transporter } from 'nodemailer';
 import { injectable } from 'tsyringe';
 import { AppError } from '@shared/core/errors/AppError';
-import { IMailProvider } from '../interfaces/IMailProvider';
+import { IMailProvider } from '../IMailProvider';
 
 @injectable()
 class EtherealMailProvider implements IMailProvider {
