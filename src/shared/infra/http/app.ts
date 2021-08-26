@@ -9,9 +9,12 @@ import YAML from 'yamljs';
 import createConnection from '@shared/infra/database';
 import routes from '@shared/infra/http/routes';
 import { ExceptionValidation } from '../../core/errors/ExceptionValidation';
+import rateLimiter from './middlewares/RateLimiter';
 
 createConnection();
 const app = express();
+
+app.use(rateLimiter);
 
 app.use(express.json());
 
