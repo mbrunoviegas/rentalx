@@ -21,6 +21,7 @@ import { DateProvider } from '../providers/implementations/DateProvider';
 import { EtherealMailProvider } from '../providers/implementations/EtherealMailProvider';
 import { LocalStorageProvider } from '../providers/implementations/LocalStorageProvider';
 import { S3AwsProvider } from '../providers/implementations/S3AwsProvider';
+import { SESMailProvider } from '../providers/implementations/SESMailProvider';
 import { IStorageProvider } from '../providers/IStorageProvider';
 
 container.registerSingleton<ICategoryRepository>(
@@ -68,9 +69,16 @@ container.registerSingleton<IUsersTokensRepository>(
   UsersTokensRepository,
 );
 
+const mailProvider = {
+  local: container.resolve(EtherealMailProvider),
+  ses: container.resolve(SESMailProvider),
+};
+
+const MAIL_PROVIDER = process.env.MAIL_PROVIDER as string;
+
 container.registerInstance<IMailProvider>(
-  'EtherealMailProvider',
-  container.resolve(EtherealMailProvider),
+  'MailProvider',
+  mailProvider[MAIL_PROVIDER],
 );
 
 const diskStorage = {
