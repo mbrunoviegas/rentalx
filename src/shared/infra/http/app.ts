@@ -1,4 +1,5 @@
 import '@shared/core/container';
+import cors from 'cors';
 import express from 'express';
 import 'express-async-errors';
 import path from 'path';
@@ -17,6 +18,7 @@ app.use(express.json());
 const swaggerDocumentPath = path.resolve(__dirname, '..', '..', '..', './swagger.yml');
 app.use('/api', swaggerUi.serve, swaggerUi.setup(YAML.load(swaggerDocumentPath)));
 
+app.use(cors());
 app.use(routes);
 
 const exceptionValidation = new ExceptionValidation();
